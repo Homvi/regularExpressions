@@ -25,3 +25,11 @@ CREATE TABLE IF NOT EXISTS expressions(
     PRIMARY KEY (expressionId),
     FOREIGN KEY (creatorId) REFERENCES users(userId)
 );
+
+INSERT INTO DB_REGEXPRESSIONS.users(firstName, surname, username, email, password, isAdmin) VALUES
+    ('Adam', 'Honvedo', 'adam.honvedo', 'adam.honvedo@gmail.com', '1234', 1),
+    ('Adrian', 'Montes', 'adrianceroca', 'adrianceroca@gmail.com', '1234', 1),
+    ('Alvaro', 'Carceles', 'alvaro', 'albotarell@gmail.com', '1234', 1),
+    ('User1', 'user1', 'user1', 'user1@gmail.com', '1234', 0);
+    
+SELECT * FROM DB_REGEXPRESSIONS.users;
