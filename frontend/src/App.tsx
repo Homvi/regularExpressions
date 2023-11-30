@@ -1,10 +1,14 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Users from "./pages/Users";
 
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </>
+    <div className="bg-cover svg-bcg min-h-screen relative">
+        <Routes>
+          <Route path="/users" element={<Users />} />
+        </Routes>
+      </div>
   );
 }
 
