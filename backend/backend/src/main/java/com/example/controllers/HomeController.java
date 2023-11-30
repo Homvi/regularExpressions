@@ -2,15 +2,18 @@ package com.example.controllers;
 
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.pojos.User;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:5173")
 public class HomeController {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -39,5 +42,7 @@ public class HomeController {
 	public void AddUser(User user) {
 		String query = "INSERT INTO DB_REGEXPRESSIONS.users (firstName, surname, username, email, password, isAdmin) VALUES"
 				+ "'" + user.getFirstName() + "', '" + user.getSurname() + "', '" + user.getEmail() + "', '" + user.getPassword() + "', " +user.isAdmin() + "')";
+		String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(20));
+		jdbcTemplate.update(query, user.getFirstName());
 	}
 }
