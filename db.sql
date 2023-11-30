@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users(
     username VARCHAR(20),
     email VARCHAR(50),
     password VARCHAR(200),
-    isAdmin BOOLEAN,
+    isAdmin TINYINT,
     PRIMARY KEY (userId)
 );
     
