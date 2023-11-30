@@ -1,6 +1,6 @@
-const User = (user) => {
+const User = ({user}) => {
   return (
-    <div>User</div>
+    <div>{user.firstName}</div>
   )
 }
 
