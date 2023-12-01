@@ -39,6 +39,12 @@ const Register = () => {
         newUser
       );
       console.log(response);
+      setFirstName("");
+      setLastName("");
+      setUserName("");
+      setEmail("");
+      setPassword("");
+      setPasswordAgain("");
     } catch (error) {
       console.log(error);
     }
