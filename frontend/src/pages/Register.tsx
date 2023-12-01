@@ -27,15 +27,16 @@ const Register = () => {
     }
 
     const newUser = {
-      firstName,
-      lastName,
-      userName,
-      email,
-      password,
+      firstName: firstName,
+      surname: lastName,
+      userName: userName,
+      email: email,
+      password: password,
     };
 
     console.log(newUser);
     try {
+      console.log("Trying to post data");
       const response = await axios.post(
         "http://localhost:8080/register",
         newUser
@@ -161,10 +162,7 @@ const Register = () => {
             />
           </label>
         </div>
-        <button
-          type="submit"
-          className="btn btn-primary"
-        >
+        <button type="submit" className="btn btn-primary">
           Register
         </button>
       </form>
