@@ -75,6 +75,12 @@ public class User {
 		return isAdmin;
 	}
 
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", firstName=" + firstName + ", surname=" + surname + ", username=" + username
+				+ ", email=" + email + ", password=" + password + ", isAdmin=" + isAdmin + "]";
+	}
+
 	public void setAdmin(Long isAdmin) {
 		this.isAdmin = isAdmin;
 	}

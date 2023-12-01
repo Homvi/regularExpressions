@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.pojos.Expression;
@@ -55,21 +58,25 @@ public class HomeController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/register")
-	public User AddUser(User user) {
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ResponseEntity<Object> AddUser(@RequestBody User user) {
 		//Checks if the username already exists in the database
 		List<User> users = GetUsers();
+		users.forEach(userElement -> {
+			System.out.println(userElement.toString());
+		});
 		for(int i = 0; i < users.size(); i++) {
 			//If the user already exists, it should return an error
 			if (users.get(i).getUsername().equals(user.getUsername())) {
-				return null;
+				return ResponseEntity.noContent().build();
 			}
 		}
+		
 		//If it doesn't exist, it gets added to the database and returns the user
 		String query = "INSERT INTO DB_REGEXPRESSIONS.users (firstName, surname, username, email, password, isAdmin) VALUES (?, ?, ?, ?, ?, ?)";
 		String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(20));
-		jdbcTemplate.update(query, user.getFirstName(), user.getSurname(), user.getSurname(), user.getUsername(), user.getEmail(), hashedPassword, 0);
-		return user;
+		jdbcTemplate.update(query, user.getFirstName(), user.getSurname(), user.getUsername(), user.getEmail(), hashedPassword, 0);
+		return ResponseEntity.ok(user);
 	}
 	
 	public static boolean CheckPassword(String password, String hashedPassword) {
