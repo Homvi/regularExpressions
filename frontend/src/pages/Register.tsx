@@ -56,7 +56,7 @@ const Register = () => {
       {/* form */}
       <form
         onSubmit={handleSubmit}
-        className="w-full md:w-[70%] border-[1px] border-gray-800 rounded-lg p-6 flex flex-col mx-auto my-3"
+        className="w-full md:w-[70%] border-[1px] border-gray-100 p-6 flex flex-col mx-auto my-3"
       >
         {/* firstName input */}
         <label className="form-control w-full">
