@@ -32,7 +32,7 @@ const Login = () => {
   return (
     <div className="min-h-screen w-full flex flex-col items-center">
       <ToastContainer />
-      <h1 className="text-center text-3xl my-3">Register</h1>
+      <h1 className="text-center text-3xl my-3">Log in</h1>
       {/* form */}
       <form
         onSubmit={handleSubmit}
