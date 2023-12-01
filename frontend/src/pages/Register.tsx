@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -15,12 +17,12 @@ const Register = () => {
     e.preventDefault();
 
     if (!isPrivacyCheckboxChecked) {
-      alert("You must accept the privacy");
+      toast("Accept privacy!");
       return;
     }
 
     if (password !== passwordAgain) {
-      alert("The two password doesn't match");
+      toast("The two password doesn't match");
       return;
     }
 
@@ -52,6 +54,7 @@ const Register = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center">
+      <ToastContainer />
       <h1 className="text-center text-3xl my-3">Register</h1>
       {/* form */}
       <form
