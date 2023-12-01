@@ -29,7 +29,7 @@ const Register = () => {
     const newUser = {
       firstName: firstName,
       surname: lastName,
-      userName: userName,
+      username: userName,
       email: email,
       password: password,
     };
@@ -37,10 +37,7 @@ const Register = () => {
     console.log(newUser);
     try {
       console.log("Trying to post data");
-      const response = await axios.post(
-        "http://localhost:8080/register",
-        newUser
-      );
+      const response = await axios.post("http://localhost:8080/register", newUser);
       console.log(response);
       toast("The registration was successfull");
       setFirstName("");
