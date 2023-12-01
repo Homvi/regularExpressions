@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 const Register = () => {
@@ -10,7 +11,19 @@ const Register = () => {
   const [isPrivacyCheckboxChecked, setIsPrivacyCheckboxChecked] =
     useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    if (!isPrivacyCheckboxChecked) {
+      alert("You must accept the privacy");
+      return;
+    }
+
+    if (password !== passwordAgain) {
+      alert("The two password doesn't match");
+      return;
+    }
+
     const newUser = {
       firstName,
       lastName,
@@ -18,7 +31,19 @@ const Register = () => {
       email,
       password,
     };
+
+    console.log(newUser);
+    try {
+      const response = await axios.post(
+        "http://localhost/8080/register",
+        newUser
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <div className="min-h-screen w-full flex flex-col items-center">
       <h1 className="text-center text-3xl my-3">Register</h1>
@@ -36,6 +61,7 @@ const Register = () => {
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             type="text"
+            required
             placeholder="First name"
             className="input input-bordered w-full"
           />
@@ -49,6 +75,7 @@ const Register = () => {
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             type="text"
+            required
             placeholder="Last name"
             className="input input-bordered w-full"
           />
@@ -62,10 +89,74 @@ const Register = () => {
             value={lastName}
             onChange={(e) => setUserName(e.target.value)}
             type="text"
+            required
             placeholder="username"
             className="input input-bordered w-full"
           />
         </label>
+        {/* email input */}
+        <label className="form-control w-full">
+          <div className="label">
+            <span className="label-text">Email</span>
+          </div>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            required
+            placeholder="email"
+            className="input input-bordered w-full"
+          />
+        </label>
+        {/* password input */}
+        <label className="form-control w-full">
+          <div className="label">
+            <span className="label-text">Password</span>
+          </div>
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            required
+            className="input input-bordered w-full"
+          />
+        </label>
+        {/* passwordAgain input */}
+        <label className="form-control w-full">
+          <div className="label">
+            <span className="label-text">Password again</span>
+          </div>
+          <input
+            value={passwordAgain}
+            required
+            onChange={(e) => setPasswordAgain(e.target.value)}
+            type="password"
+            className="input input-bordered w-full"
+          />
+        </label>
+        {/* Privacy */}
+        <div className="form-control my-3 ">
+          <label className="label cursor-pointer">
+            <span className="label-text">
+              I have read an accept the privacy policy
+            </span>
+            <input
+              type="checkbox"
+              onChange={() =>
+                setIsPrivacyCheckboxChecked(!isPrivacyCheckboxChecked)
+              }
+              checked={isPrivacyCheckboxChecked}
+              className="checkbox"
+            />
+          </label>
+        </div>
+        <button
+          type="submit"
+          onClick={(e) => handleSubmit(e)}
+          className="btn btn-primary"
+        >
+          Register
+        </button>
       </form>
     </div>
   );
