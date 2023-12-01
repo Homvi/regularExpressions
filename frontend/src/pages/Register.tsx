@@ -86,7 +86,7 @@ const Register = () => {
             <span className="label-text">Username</span>
           </div>
           <input
-            value={lastName}
+            value={userName}
             onChange={(e) => setUserName(e.target.value)}
             type="text"
             required
