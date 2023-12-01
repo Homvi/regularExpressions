@@ -18,7 +18,7 @@ const Login = () => {
     console.log(user);
     try {
       console.log("Trying to post data");
-      const response = await axios.post("http://localhost:8080/register", user);
+      const response = await axios.post("http://localhost:8080/login", user);
       console.log(response);
       toast("You have succesfully logged in!");
       setEmail("");
