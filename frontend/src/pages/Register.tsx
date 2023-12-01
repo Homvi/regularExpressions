@@ -37,7 +37,7 @@ const Register = () => {
     console.log(newUser);
     try {
       const response = await axios.post(
-        "http://localhost/8080/register",
+        "http://localhost:8080/register",
         newUser
       );
       console.log(response);
