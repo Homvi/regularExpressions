@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -13,7 +13,7 @@ const Register = () => {
   const [isPrivacyCheckboxChecked, setIsPrivacyCheckboxChecked] =
     useState(false);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!isPrivacyCheckboxChecked) {
@@ -41,6 +41,7 @@ const Register = () => {
         newUser
       );
       console.log(response);
+      toast("The registration was successfull");
       setFirstName("");
       setLastName("");
       setUserName("");
@@ -48,6 +49,7 @@ const Register = () => {
       setPassword("");
       setPasswordAgain("");
     } catch (error) {
+      toast("Oops it didn't work!");
       console.log(error);
     }
   };
@@ -161,7 +163,6 @@ const Register = () => {
         </div>
         <button
           type="submit"
-          onClick={(e) => handleSubmit(e)}
           className="btn btn-primary"
         >
           Register
