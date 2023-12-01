@@ -1,16 +1,18 @@
-import { Link } from "react-router-dom";
+
 
 const Home = () => {
   return (
     <>
-      <h1 className="text-center">Home page</h1>
-      <div className="flex flex-col gap-3 justify-center items-center w-full">
-        <Link to="/login">
-          <button className="btn btn-primary my-3 w-28">Log in</button>
-        </Link>
-        <Link to="/register">
-          <button className="btn btn-secondary my-3 w-28">Register</button>
-        </Link>
+      <div className="hero min-h-screen bg-base-200">
+        <div className="hero-content text-center">
+          <div className="max-w-md">
+            <h1 className="text-5xl font-bold">RegularExpressions</h1>
+            <p className="py-6">
+              A webpage where you can learn expressions while having fun 😁😀
+            </p>
+            <button className="btn btn-primary">Get Started</button>
+          </div>
+        </div>
       </div>
     </>
   );
