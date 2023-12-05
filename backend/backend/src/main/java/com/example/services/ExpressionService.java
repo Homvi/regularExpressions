@@ -1,6 +1,8 @@
 package com.example.services;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +19,12 @@ public class ExpressionService {
 	ExpressionService(ExpressionRepository expressionRepository) {
 		this.expressionRepository = expressionRepository;
 	}
-	/*
-	public List<Expression> getExpressions() {
-		List<Expression> expressions = expressionRepository.findAll();
-		
-	}*/
+	
+	public List<Expression> getExpressions(String language) {
+	    List<Expression> expressions = expressionRepository.findAll().stream()
+	            .filter(expression -> language.equals(expression.getLanguageOfExpression()))
+	            .collect(Collectors.toList());
+	    Collections.shuffle(expressions);
+	    return expressions.stream().limit(10).collect(Collectors.toList());
+	}
 }
