@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
+import { UserContext } from "../UserContext";
+import { useContext } from "react";
 
 const Navbar = () => {
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+  const handleLogout = () => {
+    setLoggedInUser({});
+  };
+
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -13,9 +21,16 @@ const Navbar = () => {
           <li>
             <Link to="/register">Register</Link>
           </li>
-          <li>
-            <Link to="/login">Log in</Link>
-          </li>
+          {loggedInUser.firstName && (
+            <li onClick={handleLogout}>
+              <a href="#">Log out</a>
+            </li>
+          )}
+          {!loggedInUser.firstName && (
+            <li>
+              <Link to="/login">Log in</Link>
+            </li>
+          )}
           <li>
             <a href="#">Change language</a>
           </li>
