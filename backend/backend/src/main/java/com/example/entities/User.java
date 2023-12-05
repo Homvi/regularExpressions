@@ -25,10 +25,10 @@ public class User implements Serializable{
 	@Column(name = "userid")
 	private Long id;
 	
-	@Column(name = "firstName")
-	private String firstname;
+	@Column(name = "firstname")
+	private String firstName;
 	
-	@Column(name = "surName")
+	@Column(name = "surname")
 	private String surname;
 	
 	@Column(name = "username")
@@ -40,6 +40,6 @@ public class User implements Serializable{
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "isAdmin")
+	@Column(name = "isadmin")
 	private Long isAdmin;
 }

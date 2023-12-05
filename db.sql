@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS users(
     isAdmin TINYINT,
     PRIMARY KEY (userId)
 );
+
     
 CREATE TABLE IF NOT EXISTS expressions(
     expressionId INT AUTO_INCREMENT,
