@@ -27,6 +27,4 @@ public class ExpressionController {
 	public List<Expression> getEnglishExpressions() {
 		return expressionService.getExpressions("english");
 	}
-	
-	
 }
