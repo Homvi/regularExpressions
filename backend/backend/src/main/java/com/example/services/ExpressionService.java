@@ -7,11 +7,12 @@ import com.example.repository.ExpressionRepository;
 
 @Service
 public class ExpressionService {
-	
+
 	@Autowired
 	private ExpressionRepository expressionRepository;
-	
+
 	ExpressionService(ExpressionRepository expressionRepository) {
 		this.expressionRepository = expressionRepository;
 	}
+
 }
