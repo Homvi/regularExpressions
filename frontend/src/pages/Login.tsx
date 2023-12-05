@@ -3,11 +3,13 @@ import { FormEvent, useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../UserContext";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [, setLoggedInUser] = useContext(UserContext);
+  const history = useHistory();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,6 +33,7 @@ const Login = () => {
         userId: response.data.id,
         userName: response.data.username,
       });
+      history.push("/");
     } catch (error) {
       toast("Oops it didn't work!");
       console.log(error);
