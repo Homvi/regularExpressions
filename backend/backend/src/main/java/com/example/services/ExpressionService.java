@@ -25,6 +25,7 @@ public class ExpressionService {
 	            .filter(expression -> language.equals(expression.getLanguageOfExpression()))
 	            .collect(Collectors.toList());
 	    Collections.shuffle(expressions);
+	    System.out.println(expressions);
 	    return expressions.stream().limit(10).collect(Collectors.toList());
 	}
 }
