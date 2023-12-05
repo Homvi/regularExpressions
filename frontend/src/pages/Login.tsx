@@ -1,11 +1,13 @@
 import axios from "axios";
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../UserContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [, setLoggedInUser] = useContext(UserContext);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,6 +25,12 @@ const Login = () => {
       toast("You have succesfully logged in!");
       setEmail("");
       setPassword("");
+      setLoggedInUser({
+        firstName: response.data.firstname,
+        lastName: response.data.surname,
+        userId: response.data.id,
+        userName: response.data.username,
+      });
     } catch (error) {
       toast("Oops it didn't work!");
       console.log(error);
