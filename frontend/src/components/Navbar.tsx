@@ -20,17 +20,19 @@ const Navbar = () => {
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
-          {loggedInUser.firstName && (
-            <li onClick={handleLogout}>
-              <a href="#">Log out</a>
+          {!loggedInUser.firstName && (
+            <li>
+              <Link to="/register">Register</Link>
             </li>
           )}
           {!loggedInUser.firstName && (
             <li>
               <Link to="/login">Log in</Link>
+            </li>
+          )}
+            {loggedInUser.firstName && (
+            <li onClick={handleLogout}>
+              <a href="#">Log out</a>
             </li>
           )}
           <li>
