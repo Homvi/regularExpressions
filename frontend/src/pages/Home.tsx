@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 import spanishFlag from "../assets/spanish_flag.png";
 import britishFlag from "../assets/uk_flag.png";
 import { UserContext } from "../UserContext";
-import {  useContext } from "react";
+import { useContext } from "react";
 
 const Home = () => {
-
   const [user] = useContext(UserContext);
 
   return (
@@ -14,7 +13,7 @@ const Home = () => {
         <div className="hero-content text-center">
           <div>
             <h1 className="text-3xl font-bold">RegularExpressions</h1>
-            {user ? (
+            {user.firstName ? (
               <p>Hello, {user.firstName}</p>
             ) : (
               <p className="py-6">
