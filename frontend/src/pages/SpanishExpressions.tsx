@@ -132,7 +132,7 @@ const SpanishExpressions = () => {
         </button>
       )}
       {isGameStarted && (
-        <Expression expression={activeExpression} handleChoice={handleChoice} />
+        <Expression key={activeExpressionIndex} expression={activeExpression} handleChoice={handleChoice} />
       )}
     </div>
   );
