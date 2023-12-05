@@ -28,10 +28,9 @@ CREATE TABLE IF NOT EXISTS expressions(
 );
 
 /*INSERT INTO DB_REGEXPRESSIONS.users(firstName, surname, username, email, password, isAdmin) VALUES
-    ('Adam', 'Honvedo', 'adam.honvedo', 'adam.honvedo@gmail.com', '1234', 1),
-    ('Adrian', 'Montes', 'adrianceroca', 'adrianceroca@gmail.com', '1234', 1),
-    ('Alvaro', 'Carceles', 'alvaro', 'albotarell@gmail.com', '1234', 1),
-    ('User1', 'user1', 'user1', 'user1@gmail.com', '1234', 0); */
+    ('Adam', 'Honvedo', 'adam.honvedo', 'adam.honvedo@gmail.com', '$2a$10$5Q67JdBRwHqfbhBBiXU/ZOBtmvJ2A7xpAa41r7UqyATf2BIQtKv5S', 1),
+    ('Adrian', 'Montes', 'adrianceroca', 'adrianceroca@gmail.com', '$2a$10$5Q67JdBRwHqfbhBBiXU/ZOBtmvJ2A7xpAa41r7UqyATf2BIQtKv5S', 1),
+    ('Alvaro', 'Carceles', 'alvaro', 'albotarell@gmail.com', '$2a$10$5Q67JdBRwHqfbhBBiXU/ZOBtmvJ2A7xpAa41r7UqyATf2BIQtKv5S', 1),
     
 /* INSERT INTO DB_REGEXPRESSIONS.expressions(languageOfExpression, expression, rightAnswer, falseAnswerOne, falseAnswerTwo, creatorId,validated) VALUES
 	('spanish', 'Meter la pata', 'To make a mistake', 'To have good luck', 'To be angry', 3,True),
@@ -54,6 +53,11 @@ CREATE TABLE IF NOT EXISTS expressions(
     ('english', 'Speak of the devil', 'Cuando hablas de alguien y aparece', 'Cuando hablas del diablo', 'Cuando te pasa algo malo', 3,True),
     ('english', 'To not be rocket science', 'Cuando una tarea no es difícil', 'Cuando algo no es científico', 'Cuando alguien no tiene un buen físico', 3,True),
     ('english', 'Break a leg!', 'Se utiliza para desear suerte', 'Cuando alguien se rompe una pierna', 'Cuando pasa algo malo', 3,True); */
+    
+/*INSERT INTO DB_REGEXPRESSIONS.expressions(languageOfExpression, expression, rightAnswer, falseAnswerOne, falseAnswerTwo, creatorId,validated) VALUES
+	('spanish', 'Estirar la pata', 'To die', 'To take a nap', 'To warm up', 3,True),
+    ('spanish', 'Dar la vuelta a la tortilla', 'To change the situation in one\'s favor', 'To flip an omelette', 'To change your opinion about something', 3,True),
+    ('spanish', 'Tener mucho morro / Tener mucha cara', 'To take advantage of people or situations', 'To pretend to be someone else', 'To have a serious expression', 3,True)*/
     
 SELECT * FROM DB_REGEXPRESSIONS.users;
 SELECT * FROM DB_REGEXPRESSIONS.expressions;
