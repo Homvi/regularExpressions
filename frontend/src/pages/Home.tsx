@@ -15,7 +15,7 @@ const Home = () => {
           <div>
             <h1 className="text-3xl font-bold">RegularExpressions</h1>
             {user ? (
-              <p>`Hello, ${user.firstName}`</p>
+              <p>Hello, {user.firstName}</p>
             ) : (
               <p className="py-6">
                 A webpage where you can learn expressions while having fun 😁😀
