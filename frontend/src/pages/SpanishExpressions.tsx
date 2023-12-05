@@ -7,7 +7,7 @@ const SpanishExpressions = () => {
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [loading, setLoading] = useState(true);
 
-/*   const expressionsData = [
+  /*   const expressionsData = [
     {
       id: 1,
       expression: "Meter la pata",
@@ -91,7 +91,9 @@ const SpanishExpressions = () => {
       const response = await axios.get(
         "http://localhost:8080/getSpanishExpressions"
       );
-      console.log(response.data);
+      console.log("HI from the try block");
+      console.log("This is the response: ", response);
+      console.log("This is the response.data: ", response.data);
       setExpressions(response.data);
       setLoading(false);
     } catch (error) {
