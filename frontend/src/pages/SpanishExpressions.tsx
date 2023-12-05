@@ -89,7 +89,7 @@ const SpanishExpressions = () => {
   const getTenRandomExpressions = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/getSpanishExpressions "
+        "http://localhost:8080/getSpanishExpressions"
       );
       console.log(response.data);
       setExpressions(response.data);
