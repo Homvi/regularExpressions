@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ExpressionType } from "../types/types";
 
 interface ExpressionProps {
@@ -9,12 +10,18 @@ const Expression: React.FC<ExpressionProps> = ({
   expression,
   handleChoice,
 }) => {
+  const [loaded, setLoaded] = useState(false);
 
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   return (
     <div
       className={
-        "flex flex-col justify-center items-center gap-3 transition-all duration-150"
+        loaded
+          ? "flex flex-col justify-center items-center gap-3 transition-all duration-300 opacity-100"
+          : " flex translate-x-60  flex-col justify-center items-center gap-3 transition-all duration-300 opacity-0"
       }
     >
       <h2 className="text-2xl">{expression.expression}</h2>
