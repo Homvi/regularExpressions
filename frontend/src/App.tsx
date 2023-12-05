@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import MobileNavbar from "./components/MobileNavbar";
 import SpanishExpressions from "./pages/SpanishExpressions";
+import EnglishExpressions from "./pages/EnglishExpressions";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/spanishExpressions" element={<SpanishExpressions />} />
+        <Route path="/englishExpressions" element={<EnglishExpressions />} />
       </Routes>
     </>
   );

@@ -4,7 +4,7 @@ import Expression from "../components/Expression";
 import { ExpressionType } from "../types/types";
 import Score from "../components/Score";
 
-const SpanishExpressions = () => {
+const EnglishExpressions = () => {
   const [loading, setLoading] = useState(true);
   const [isGameFinished, setIsGameFinished] = useState(false);
 
@@ -83,14 +83,15 @@ const SpanishExpressions = () => {
     },
   ]; */
 
-  const [expressions, setExpressions] = useState<ExpressionType[]>([]);
+  const [expressions, setExpressions] =
+    useState<ExpressionType[]>([]);
   const [activeExpressionIndex, setActiveExpressionIndex] = useState(0);
   const [score, setScore] = useState(0);
 
   const getTenRandomExpressions = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/getSpanishExpressions"
+        "http://localhost:8080/getEnglishExpressions"
       );
       setExpressions(response.data);
       setLoading(false);
@@ -141,4 +142,4 @@ const SpanishExpressions = () => {
   );
 };
 
-export default SpanishExpressions;
+export default EnglishExpressions;
