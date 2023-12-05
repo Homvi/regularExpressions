@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Users from "./pages/Users";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import MobileNavbar from "./components/MobileNavbar";
+import SpanishExpressions from "./pages/SpanishExpressions";
 
 function App() {
   return (
@@ -18,9 +18,9 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/users" element={<Users />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/spanishExpressions" element={<SpanishExpressions />} />
       </Routes>
     </>
   );
