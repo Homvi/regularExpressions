@@ -5,8 +5,9 @@ import { ExpressionType } from "../types/types";
 
 const SpanishExpressions = () => {
   const [isGameStarted, setIsGameStarted] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const expressionsData = [
+/*   const expressionsData = [
     {
       id: 1,
       expression: "Meter la pata",
@@ -79,10 +80,9 @@ const SpanishExpressions = () => {
       falseAnswerOne: "To be a family of carpenters",
       falseAnswerTwo: "To have a good relation with your family",
     },
-  ];
+  ]; */
 
-  const [expressions, setExpressions] =
-    useState<ExpressionType[]>(expressionsData);
+  const [expressions, setExpressions] = useState<ExpressionType[]>([]);
   const [activeExpressionIndex, setActiveExpressionIndex] = useState(0);
   const [score, setScore] = useState(0);
 
@@ -93,8 +93,10 @@ const SpanishExpressions = () => {
       );
       console.log(response.data);
       setExpressions(response.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -123,6 +125,7 @@ const SpanishExpressions = () => {
   return (
     <div className=" h-screen flex justify-center items-center flex-col gap-3">
       <h1>SpanishExpressions</h1>
+      {loading && <p>Loading...</p>}
       {!isGameStarted && (
         <button
           onClick={() => setIsGameStarted(true)}
@@ -132,7 +135,11 @@ const SpanishExpressions = () => {
         </button>
       )}
       {isGameStarted && (
-        <Expression key={activeExpressionIndex} expression={activeExpression} handleChoice={handleChoice} />
+        <Expression
+          key={activeExpressionIndex}
+          expression={activeExpression}
+          handleChoice={handleChoice}
+        />
       )}
     </div>
   );
