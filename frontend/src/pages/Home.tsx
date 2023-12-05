@@ -43,6 +43,15 @@ const Home = () => {
                 />
               </Link>
             </div>
+            {!user.firstName && (
+              <Link
+                to={"/register"}
+              >
+                <button className="btn btn-accent my-6">
+                  Register to add your own expression
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
