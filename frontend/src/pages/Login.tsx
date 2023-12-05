@@ -18,7 +18,6 @@ const Login = () => {
       password: password,
     };
 
-    console.log(user);
     try {
       console.log("Trying to post data");
       const response = await axios.post("http://localhost:8080/login", user);
