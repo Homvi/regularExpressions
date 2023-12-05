@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS users(
     isAdmin TINYINT,
     PRIMARY KEY (userId)
 );
-
+/* sí*/
+ALTER TABLE DB_REGEXPRESSIONS.users AUTO_INCREMENT = 0;
     
 CREATE TABLE IF NOT EXISTS expressions(
     expressionId INT AUTO_INCREMENT,
@@ -27,12 +28,12 @@ CREATE TABLE IF NOT EXISTS expressions(
     FOREIGN KEY (creatorId) REFERENCES users(userId)
 );
 
-/*INSERT INTO DB_REGEXPRESSIONS.users(firstName, surname, username, email, password, isAdmin) VALUES
+INSERT INTO DB_REGEXPRESSIONS.users(firstName, surname, username, email, password, isAdmin) VALUES
     ('Adam', 'Honvedo', 'adam.honvedo', 'adam.honvedo@gmail.com', '$2a$10$5Q67JdBRwHqfbhBBiXU/ZOBtmvJ2A7xpAa41r7UqyATf2BIQtKv5S', 1),
     ('Adrian', 'Montes', 'adrianceroca', 'adrianceroca@gmail.com', '$2a$10$5Q67JdBRwHqfbhBBiXU/ZOBtmvJ2A7xpAa41r7UqyATf2BIQtKv5S', 1),
-    ('Alvaro', 'Carceles', 'alvaro', 'albotarell@gmail.com', '$2a$10$5Q67JdBRwHqfbhBBiXU/ZOBtmvJ2A7xpAa41r7UqyATf2BIQtKv5S', 1),
+    ('Alvaro', 'Carceles', 'alvaro', 'albotarell@gmail.com', '$2a$10$5Q67JdBRwHqfbhBBiXU/ZOBtmvJ2A7xpAa41r7UqyATf2BIQtKv5S', 1);
     
-/* INSERT INTO DB_REGEXPRESSIONS.expressions(languageOfExpression, expression, rightAnswer, falseAnswerOne, falseAnswerTwo, creatorId,validated) VALUES
+ INSERT INTO DB_REGEXPRESSIONS.expressions(languageOfExpression, expression, rightAnswer, falseAnswerOne, falseAnswerTwo, creatorId,validated) VALUES
 	('spanish', 'Meter la pata', 'To make a mistake', 'To have good luck', 'To be angry', 3,True),
     ('spanish', 'Estar en las nubes', 'Daydreaming or thinking about something unrelated to reality', 'Being very focused on a task', 'Feeling light and happy', 3,True),
     ('spanish', 'Dar en el clavo', 'To find the right solution', 'To accidentally hit something with a nail', 'To make a mistake while attempting something', 3,True),
@@ -52,12 +53,12 @@ CREATE TABLE IF NOT EXISTS expressions(
     ('english', 'To feel blue', 'Estar triste', 'Ser azul', 'Estar eufórico', 3,True),
     ('english', 'Speak of the devil', 'Cuando hablas de alguien y aparece', 'Cuando hablas del diablo', 'Cuando te pasa algo malo', 3,True),
     ('english', 'To not be rocket science', 'Cuando una tarea no es difícil', 'Cuando algo no es científico', 'Cuando alguien no tiene un buen físico', 3,True),
-    ('english', 'Break a leg!', 'Se utiliza para desear suerte', 'Cuando alguien se rompe una pierna', 'Cuando pasa algo malo', 3,True); */
+    ('english', 'Break a leg!', 'Se utiliza para desear suerte', 'Cuando alguien se rompe una pierna', 'Cuando pasa algo malo', 3,True); 
     
-/*INSERT INTO DB_REGEXPRESSIONS.expressions(languageOfExpression, expression, rightAnswer, falseAnswerOne, falseAnswerTwo, creatorId,validated) VALUES
+INSERT INTO DB_REGEXPRESSIONS.expressions(languageOfExpression, expression, rightAnswer, falseAnswerOne, falseAnswerTwo, creatorId,validated) VALUES
 	('spanish', 'Estirar la pata', 'To die', 'To take a nap', 'To warm up', 3,True),
     ('spanish', 'Dar la vuelta a la tortilla', 'To change the situation in one\'s favor', 'To flip an omelette', 'To change your opinion about something', 3,True),
-    ('spanish', 'Tener mucho morro / Tener mucha cara', 'To take advantage of people or situations', 'To pretend to be someone else', 'To have a serious expression', 3,True)*/
+    ('spanish', 'Tener mucho morro / Tener mucha cara', 'To take advantage of people or situations', 'To pretend to be someone else', 'To have a serious expression', 3,True);
     
 SELECT * FROM DB_REGEXPRESSIONS.users;
 SELECT * FROM DB_REGEXPRESSIONS.expressions;
