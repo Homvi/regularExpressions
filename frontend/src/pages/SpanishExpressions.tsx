@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Expression from "../components/Expression";
 import { ExpressionType } from "../types/types";
+import Score from "../components/Score";
 
 const SpanishExpressions = () => {
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isGameFinished, setIsGameFinished] = useState(false);
 
   /*   const expressionsData = [
     {
@@ -91,9 +93,6 @@ const SpanishExpressions = () => {
       const response = await axios.get(
         "http://localhost:8080/getSpanishExpressions"
       );
-      console.log("HI from the try block");
-      console.log("This is the response: ", response);
-      console.log("This is the response.data: ", response.data);
       setExpressions(response.data);
       setLoading(false);
     } catch (error) {
@@ -108,17 +107,19 @@ const SpanishExpressions = () => {
     getTenRandomExpressions();
   }, []);
 
+  const resetGame = () => {
+    setIsGameStarted(false);
+    setIsGameFinished(false);
+    setScore(0);
+    setActiveExpressionIndex(0);
+  };
+
   const handleChoice = (choice: string) => {
     if (choice === activeExpression.rightAnswer) {
       setScore(score + 1);
     }
     if (activeExpressionIndex === 9) {
-      //calculate percentage of score
-      const percentage = (score / 10) * 100;
-      alert(`Game over! Your score is ${percentage}%`);
-      setIsGameStarted(false);
-      setScore(0);
-      setActiveExpressionIndex(0);
+      setIsGameFinished(true);
     } else {
       setActiveExpressionIndex(activeExpressionIndex + 1);
     }
@@ -143,6 +144,7 @@ const SpanishExpressions = () => {
           handleChoice={handleChoice}
         />
       )}
+      {isGameFinished && <Score score={score} resetGame={resetGame} />}
     </div>
   );
 };
