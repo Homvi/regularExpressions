@@ -42,5 +42,5 @@ public class Expression implements Serializable {
 	private Long creatorId;
 	
 	@Column(name = "validated")
-	private boolean validated;
+	private Long validated;
 }
