@@ -3,12 +3,13 @@ import { FormEvent, useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../UserContext";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,10 +32,12 @@ const Login = () => {
         userId: response.data.id,
         userName: response.data.username,
       });
-      console.log(response.data.hash);
+      if (response.data.hash) {
+        localStorage.setItem("hash", response.data.hash);
+      }
       if (loggedInUser.firstName) {
         setTimeout(() => {
-          return redirect("/");
+          navigate("/");
         }, 2000);
       }
     } catch (error) {
