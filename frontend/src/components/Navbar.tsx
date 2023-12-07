@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import { useContext } from "react";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-
+  const navigate = useNavigate();
   const handleLogout = () => {
     setLoggedInUser({});
-    return redirect("/");
+    navigate("/");
   };
 
   return (
@@ -30,7 +30,7 @@ const Navbar = () => {
               <Link to="/login">Log in</Link>
             </li>
           )}
-            {loggedInUser.firstName && (
+          {loggedInUser.firstName && (
             <li onClick={handleLogout}>
               <a href="#">Log out</a>
             </li>
