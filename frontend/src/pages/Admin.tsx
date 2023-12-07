@@ -103,11 +103,14 @@ const Admin = () => {
 
   const handleDeleteExpression = async (id: number) => {
     try {
-    const response =  await axios.delete(`http://localhost:8080/deleteExpression`, {
-        data: { id: id },
-      });
+      const response = await axios.delete(
+        `http://localhost:8080/deleteExpression`,
+        {
+          data: { id: id },
+        }
+      );
       console.log(response);
-      
+
       fetchExpressions();
     } catch (error) {
       console.error(error);
@@ -118,9 +121,7 @@ const Admin = () => {
     try {
       const response = await axios.patch(
         `http://localhost:8080/validateExpression`,
-        {
-          id: id,
-        }
+        id
       );
 
       console.log(response);
