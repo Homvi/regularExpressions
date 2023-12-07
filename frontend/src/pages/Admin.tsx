@@ -114,7 +114,7 @@ const Admin = () => {
 
   const handleValidateExpression = async (id: number) => {
     try {
-      await axios.put(`http://localhost:8080/validateExpression`, {
+      await axios.patch(`http://localhost:8080/validateExpression`, {
         id: id,
       });
       fetchExpressions();
