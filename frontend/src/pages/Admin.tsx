@@ -99,9 +99,9 @@ const Admin = () => {
       );
       console.log(response);
       setRequestedExpressions(response.data);
-      alert("You are an admin!");
     } catch (error) {
       console.error(error);
+      navigate("/login");
       // Handle the error more gracefully here
     }
   };
