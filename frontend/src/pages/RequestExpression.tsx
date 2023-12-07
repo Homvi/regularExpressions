@@ -37,7 +37,6 @@ const RequestExpression = () => {
     <div className="flex flex-col justify-center w-full items-center">
       <h1 className="text-3xl text-center my-3">Request new expression</h1>
       <form
-        action="#"
         method="post"
         onSubmit={requestExpression}
         className="flex flex-col bg-gray-5000 w-[700px] p-10 rounded-lg shadow-xl"
@@ -50,8 +49,8 @@ const RequestExpression = () => {
           <option disabled selected>
             Choose expression language
           </option>
-          <option value="Spanish">Spanish</option>
-          <option value="English">English</option>
+          <option value="spanish">Spanish</option>
+          <option value="english">English</option>
         </select>
         {/* expression */}
         <label className="form-control w-full mb-2">
