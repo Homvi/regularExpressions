@@ -22,8 +22,11 @@ const RequestExpression = () => {
       falseAnswerOne,
       falseAnswerTwo,
       creatorId: 2,
-      validated: false,
+      validated: 0,
     };
+
+    console.log(newExpression);
+    
     try {
       const response = await axios.post(
         "http://localhost/8080/sendExpression",
