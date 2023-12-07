@@ -35,6 +35,9 @@ const Login = () => {
       if (response.data.hash) {
         localStorage.setItem("hash", response.data.hash);
       }
+      if (response.data.hash === null) {
+        localStorage.setItem("hash", "");
+      }
       if (loggedInUser.firstName) {
         setTimeout(() => {
           navigate("/");
