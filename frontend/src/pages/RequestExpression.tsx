@@ -1,10 +1,3 @@
-/* type ExpressionType = {
-  expression: string;
-  rightAnswer: string;
-  falseAnswerOne: string;
-  falseAnswerTwo: string;
-}; */
-
 import axios from "axios";
 import { FormEvent, useContext, useState } from "react";
 import { UserContext } from "../UserContext";
@@ -22,7 +15,7 @@ const RequestExpression = () => {
     e.preventDefault();
     try {
       const newExpression = {
-        expressionLang,
+        languageOfExpression: expressionLang,
         expression,
         rightAnswer,
         falseAnswerOne,
@@ -41,15 +34,16 @@ const RequestExpression = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col justify-center w-full items-center">
+      <h1 className="text-3xl text-center my-3">Request new expression</h1>
       <form
         action="#"
         method="post"
         onSubmit={requestExpression}
-        className="flex flex-col bg-gray-200 max-w-2xl p-10 rounded-lg shadow-xl"
+        className="flex flex-col bg-gray-5000 w-[700px] p-10 rounded-lg shadow-xl"
       >
         <select
-          className="select w-full max-w-xs"
+          className="select w-full mb-2"
           value={expressionLang}
           onChange={(e) => setexpressionLang(e.target.value)}
         >
@@ -59,35 +53,59 @@ const RequestExpression = () => {
           <option value="Spanish">Spanish</option>
           <option value="English">English</option>
         </select>
-        <input
-          type="text"
-          placeholder="Enter expression"
-          className="input input-ghost w-full max-w-xs"
-          value={expression}
-          onChange={(e) => setExpression(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter right answer"
-          className="input input-ghost w-full max-w-xs"
-          value={rightAnswer}
-          onChange={(e) => setRightAnswer(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter first false answer"
-          className="input input-ghost w-full max-w-xs"
-          value={falseAnswerOne}
-          onChange={(e) => setFalseAnswerOne(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter second false answer"
-          className="input input-ghost w-full max-w-xs"
-          value={falseAnswerTwo}
-          onChange={(e) => setFalseAnswerTwo(e.target.value)}
-        />
-        <button type="submit" className="btn btn-primary">
+        {/* expression */}
+        <label className="form-control w-full mb-2">
+          <div className="label">
+            <span className="label-text">Expression</span>
+          </div>
+          <input
+            type="text"
+            placeholder="Expression"
+            className="input input-bordered w-full"
+            value={expression}
+            onChange={(e) => setExpression(e.target.value)}
+          />
+        </label>
+        {/* right answer */}
+        <label className="form-control w-full mb-2">
+          <div className="label">
+            <span className="label-text">Right Answer</span>
+          </div>
+          <input
+            type="text"
+            placeholder="Right Answer"
+            className="input input-bordered w-full"
+            value={rightAnswer}
+            onChange={(e) => setRightAnswer(e.target.value)}
+          />
+        </label>
+        {/* false answer one */}
+        <label className="form-control w-full mb-2">
+          <div className="label">
+            <span className="label-text">First False Answer</span>
+          </div>
+          <input
+            type="text"
+            placeholder="First False Answer"
+            className="input input-bordered w-full"
+            value={falseAnswerOne}
+            onChange={(e) => setFalseAnswerOne(e.target.value)}
+          />
+        </label>
+        {/* false answer two */}
+        <label className="form-control w-full mb-2">
+          <div className="label">
+            <span className="label-text">Second False Answer</span>
+          </div>
+          <input
+            type="text"
+            placeholder="Second False Answer"
+            className="input input-bordered w-full"
+            value={falseAnswerTwo}
+            onChange={(e) => setFalseAnswerTwo(e.target.value)}
+          />
+        </label>
+        <button type="submit" className="btn btn-primary mt-3">
           Send
         </button>
       </form>
