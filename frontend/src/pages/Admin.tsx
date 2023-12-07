@@ -119,7 +119,7 @@ const Admin = () => {
 
   const handleValidateExpression = async (id: number) => {
     try {
-      console.log("id", "id");
+      console.log("id", id);
       const response = await axios.patch(
         `http://localhost:8080/validateExpression`,
         id
