@@ -25,24 +25,28 @@ public class ExpressionController {
 		this.expressionService = expressionService;
 	}
 	
+	//Sends 10 spanish expressions to the frontend
 	@GetMapping("/getSpanishExpressions")
 	public List<Expression> getSpanishExpressions() {
 		return expressionService.getExpressions("spanish");
 	}
-	
+
+	//Sends 10 english expressions to the frontend
 	@GetMapping("/getEnglishExpressions")
 	public List<Expression> getEnglishExpressions() {
 		return expressionService.getExpressions("english");
 	}
 	
+	//Validates the selected expression. Turns the validated
+	//field into 1. This can be done in the /admin page
 	@PatchMapping("/validateExpression")
-	public ResponseEntity<?> validateExpression(@RequestBody Long id) {
-		return expressionService.validateExpression(id);
+	public ResponseEntity<?> validateExpression(@RequestBody Expression expression) {
+		return expressionService.validateExpression(expression);
 	}
 	
 	@DeleteMapping("/deleteExpression")
-	public ResponseEntity<?> deleteExpression(@RequestBody Long id) {
-		return expressionService.deleteExpression(id); 
+	public ResponseEntity<?> deleteExpression(@RequestBody Expression expression) {
+		return expressionService.deleteExpression(expression); 
 	}
 
 	@PostMapping("/sendExpression")
