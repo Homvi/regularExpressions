@@ -2,11 +2,11 @@ package com.example.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -63,13 +63,21 @@ public class UserService {
 	public ResponseEntity<?> userLogin(User user) {
 		List<User> userList = userRepository.findAll();
 		Optional<User> emailUserExists = userList.stream().filter(userRepositoryItem -> userRepositoryItem.getEmail().equals(user.getEmail())).findFirst();
-		Optional<User> usernameExists = userList.stream().filter(userRepositoryItem -> userRepositoryItem.getUsername().equals(user.getUsername())).findFirst();
+//		Optional<User> usernameExists = userList.stream().filter(userRepositoryItem -> userRepositoryItem.getUsername().equals(user.getUsername())).findFirst();
 		
 		if(emailUserExists.isPresent()){
 			if(CheckPassword(user.getPassword(), emailUserExists.get().getPassword())) {
-				LoginResponse loginResponse = new LoginResponse(user.getId(), user.getFirstName(),
-						user.getSurname(), user.getUsername());
-				return ResponseEntity.status(HttpStatus.CREATED).body(loginResponse);
+				LoginResponse loginResponse;
+				if(emailUserExists.get().getIsAdmin() == 1) {
+					String hash = generateHash();
+					loginResponse = new LoginResponse(user.getId(), user.getFirstName(),
+							user.getSurname(), user.getUsername(), hash);
+				} else {
+					loginResponse = new LoginResponse(user.getId(), user.getFirstName(),
+							user.getSurname(), user.getUsername(), null);
+				}
+				
+				return ResponseEntity.ok(loginResponse);
 			} else {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The password is incorrect.");
 			}
@@ -81,5 +89,21 @@ public class UserService {
 	
 	public static boolean CheckPassword(String password, String hashedPassword) {
 		return BCrypt.checkpw(password, hashedPassword);
+	}
+	
+	public static String generateHash() {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        
+        Random random = new Random();
+        
+        StringBuilder stringBuilder = new StringBuilder(10);
+        for (int i = 0; i < 10; i++) {
+            int randomIndex = random.nextInt(characters.length());
+            char randomChar = characters.charAt(randomIndex);
+            stringBuilder.append(randomChar);
+        }
+        
+        String randomString = stringBuilder.toString();
+        return BCrypt.hashpw(randomString, BCrypt.gensalt());
 	}
 }

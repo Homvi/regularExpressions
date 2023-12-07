@@ -34,20 +34,20 @@ public class ExpressionService {
 	    return expressions.stream().limit(10).collect(Collectors.toList());
 	}
 
-	public ResponseEntity<?> validateExpression(Long id) {
-		Optional<Expression> optionalExpression = expressionRepository.findById(id);
+	public ResponseEntity<?> validateExpression(Expression expression) {
+		Optional<Expression> optionalExpression = expressionRepository.findById(expression.getId());
 		if(optionalExpression.isPresent()) {
-			Expression expression = optionalExpression.get();
-			expression.setValidated((long) 1);
-			expressionRepository.save(expression);
+			Expression currentExpression = optionalExpression.get();
+			currentExpression.setValidated((long) 1);
+			expressionRepository.save(currentExpression);
 			return ResponseEntity.status(HttpStatus.ACCEPTED).body("Request validated");
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("There has been an error");
 		}
 	}
 	
-	public ResponseEntity<?> deleteExpression(Long id) {
-		expressionRepository.deleteById(id);
+	public ResponseEntity<?> deleteExpression(Expression expression) {
+		expressionRepository.deleteById(expression.getId());
 		return ResponseEntity.status(HttpStatus.OK).body("Request deleted");
 	}
 

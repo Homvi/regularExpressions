@@ -1,6 +1,6 @@
-package com.example.DTO;
+package com.example.entities;
 
-import com.example.entities.User;
+import java.io.Serializable;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -8,13 +8,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "admin_hashes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginResponse {
-	private Long id;
-	private String firstname;
-	private String surname;
-	private String username;
+public class Admin_hash implements Serializable {
 	private String hash;
+	private Long expiration;
 }
