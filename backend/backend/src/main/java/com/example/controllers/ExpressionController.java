@@ -2,15 +2,18 @@ package com.example.controllers;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.entities.Expression;
+import com.example.entities.User;
 import com.example.services.ExpressionService;
 
 @RestController
@@ -39,6 +42,16 @@ public class ExpressionController {
 	
 	@DeleteMapping("/deleteExpression")
 	public ResponseEntity<?> deleteExpression(@RequestBody Long id) {
-		return expressionService.deleteExpression(id);
+		return expressionService.deleteExpression(id); 
+	}
+
+	@PostMapping("/myExpressions")
+    public ResponseEntity<?> addExpression(@RequestBody Expression expression) {
+        try {
+            expressionService.addExpression(expression);
+            return new ResponseEntity<>("Expresión agregada exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al agregar la expresión", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 	}
 }
