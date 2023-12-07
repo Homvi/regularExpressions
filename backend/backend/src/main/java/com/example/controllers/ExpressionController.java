@@ -45,13 +45,18 @@ public class ExpressionController {
 		return expressionService.deleteExpression(id); 
 	}
 
-	@PostMapping("/myExpressions")
+	@PostMapping("/sendExpression")
     public ResponseEntity<?> addExpression(@RequestBody Expression expression) {
         try {
             expressionService.addExpression(expression);
-            return new ResponseEntity<>("Expresión agregada exitosamente", HttpStatus.OK);
+            return new ResponseEntity<>("Expression added", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al agregar la expresión", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("There has been an error adding the expression", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+	}
+	
+	@GetMapping("/unvalidatedExpressions")
+	public List<Expression> getInvalidatedExpressions() {
+		return expressionService.getInvalidatedExpressions();
 	}
 }

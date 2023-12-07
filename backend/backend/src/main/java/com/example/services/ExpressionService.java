@@ -54,4 +54,11 @@ public class ExpressionService {
 	public void addExpression(Expression expression) {
         expressionRepository.save(expression);
     }
+	
+	public List<Expression> getInvalidatedExpressions() {
+		List<Expression> expressions = expressionRepository.findAll().stream()
+				.filter(expression -> expression.getValidated() == 0L)
+				.collect(Collectors.toList());
+		return expressions;
+	}
 }
