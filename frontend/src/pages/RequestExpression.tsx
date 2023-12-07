@@ -3,7 +3,7 @@ import { FormEvent, useContext, useState } from "react";
 import { UserContext } from "../UserContext";
 
 const RequestExpression = () => {
-  const [expressionLang, setexpressionLang] = useState("spanish");
+  const [expressionLang, setexpressionLang] = useState("Spanish");
   const [expression, setExpression] = useState("");
   const [rightAnswer, setRightAnswer] = useState("");
   const [falseAnswerOne, setFalseAnswerOne] = useState("");
@@ -15,7 +15,7 @@ const RequestExpression = () => {
     e.preventDefault();
     try {
       const newExpression = {
-        languageOfExpression: expressionLang,
+        languageOfExpression: expressionLang.toLowerCase(),
         expression,
         rightAnswer,
         falseAnswerOne,
@@ -45,11 +45,8 @@ const RequestExpression = () => {
           value={expressionLang}
           onChange={(e) => setexpressionLang(e.target.value)}
         >
-          <option disabled selected>
-            Choose expression language
-          </option>
-          <option value="spanish">Spanish</option>
-          <option value="english">English</option>
+          <option value="Spanish">Spanish</option>
+          <option value="English">English</option>
         </select>
         {/* expression */}
         <label className="form-control w-full mb-2">
