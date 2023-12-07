@@ -28,6 +28,11 @@ CREATE TABLE IF NOT EXISTS expressions(
     FOREIGN KEY (creatorId) REFERENCES users(userId)
 );
 
+CREATE TABLE IF NOT EXISTS admin_hashes(
+	hash VARCHAR(200),
+    expiration LONG
+);
+
 INSERT INTO DB_REGEXPRESSIONS.users(firstName, surname, username, email, password, isAdmin) VALUES
     ('Adam', 'Honvedo', 'adam.honvedo', 'adam.honvedo@gmail.com', '$2a$10$5Q67JdBRwHqfbhBBiXU/ZOBtmvJ2A7xpAa41r7UqyATf2BIQtKv5S', 1),
     ('Adrian', 'Montes', 'adrianceroca', 'adrianceroca@gmail.com', '$2a$10$5Q67JdBRwHqfbhBBiXU/ZOBtmvJ2A7xpAa41r7UqyATf2BIQtKv5S', 1),
@@ -68,3 +73,4 @@ INSERT INTO DB_REGEXPRESSIONS.expressions(languageOfExpression, expression, righ
     
 SELECT * FROM DB_REGEXPRESSIONS.users;
 SELECT * FROM DB_REGEXPRESSIONS.expressions;
+SELECT * FROM DB_REGEXPRESSIONS.admin_hashes;

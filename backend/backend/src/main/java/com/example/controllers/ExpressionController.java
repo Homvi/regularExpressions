@@ -44,11 +44,16 @@ public class ExpressionController {
 		return expressionService.validateExpression(expression);
 	}
 	
+	//Declines the selected expression. Deletes the expression
+	//from the database. This can de done in the /admin page
 	@DeleteMapping("/deleteExpression")
 	public ResponseEntity<?> deleteExpression(@RequestBody Expression expression) {
 		return expressionService.deleteExpression(expression); 
 	}
-
+	
+	//Sends an expression as a request. Adds an expression to
+	//the database with a default value of validated of 0. This
+	//can be done in the /myExpressions page
 	@PostMapping("/sendExpression")
     public ResponseEntity<?> addExpression(@RequestBody Expression expression) {
         try {
@@ -59,6 +64,7 @@ public class ExpressionController {
         }
 	}
 	
+	//Gets all the expressions with the field validated of 0.
 	@GetMapping("/unvalidatedExpressions")
 	public List<Expression> getInvalidatedExpressions() {
 		return expressionService.getInvalidatedExpressions();
