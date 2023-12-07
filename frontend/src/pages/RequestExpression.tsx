@@ -1,5 +1,6 @@
 import axios from "axios";
 import { FormEvent, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 //import { UserContext } from "../UserContext";
 
 const RequestExpression = () => {
@@ -29,13 +30,16 @@ const RequestExpression = () => {
         newExpression
       );
       console.log(response);
+      toast("You have succesfully requested a new expression!");
     } catch (error) {
       console.log(error);
+      toast.error("Oops it didn't work!");
     }
   };
 
   return (
     <div className="flex flex-col justify-center w-full items-center">
+      <ToastContainer />
       <h1 className="text-3xl text-center my-3">Request new expression</h1>
       <form
         onSubmit={requestExpression}
