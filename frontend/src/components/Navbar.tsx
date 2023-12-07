@@ -7,6 +7,7 @@ const Navbar = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const navigate = useNavigate();
   const handleLogout = () => {
+    localStorage.setItem("hash", "");
     setLoggedInUser({});
     navigate("/");
   };
