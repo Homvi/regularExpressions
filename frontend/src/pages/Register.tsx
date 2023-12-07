@@ -17,12 +17,12 @@ const Register = () => {
     e.preventDefault();
 
     if (!isPrivacyCheckboxChecked) {
-      toast("Accept privacy!");
+      toast.error("Accept privacy!");
       return;
     }
 
     if (password !== passwordAgain) {
-      toast("The two password doesn't match");
+      toast.error("The two password doesn't match");
       return;
     }
 
@@ -37,7 +37,10 @@ const Register = () => {
     console.log(newUser);
     try {
       console.log("Trying to post data");
-      const response = await axios.post("http://localhost:8080/register", newUser);
+      const response = await axios.post(
+        "http://localhost:8080/register",
+        newUser
+      );
       console.log(response);
       toast("The registration was successfull");
       setFirstName("");
@@ -47,7 +50,7 @@ const Register = () => {
       setPassword("");
       setPasswordAgain("");
     } catch (error) {
-      toast("Oops it didn't work!");
+      toast.error("Oops it didn't work!");
       console.log(error);
     }
   };
