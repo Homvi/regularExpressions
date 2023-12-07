@@ -29,8 +29,10 @@ CREATE TABLE IF NOT EXISTS expressions(
 );
 
 CREATE TABLE IF NOT EXISTS admin_hashes(
+	hashId INT AUTO_INCREMENT,
 	hash VARCHAR(200),
-    expiration LONG
+    expiration LONG,
+    PRIMARY KEY (hashId)
 );
 
 INSERT INTO DB_REGEXPRESSIONS.users(firstName, surname, username, email, password, isAdmin) VALUES

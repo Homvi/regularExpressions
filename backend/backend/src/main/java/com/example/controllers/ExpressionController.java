@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.entities.Admin_hash;
 import com.example.entities.Expression;
-import com.example.entities.User;
 import com.example.services.ExpressionService;
 
 @RestController
@@ -65,8 +65,8 @@ public class ExpressionController {
 	}
 	
 	//Gets all the expressions with the field validated of 0.
-	@GetMapping("/unvalidatedExpressions")
-	public List<Expression> getInvalidatedExpressions() {
-		return expressionService.getInvalidatedExpressions();
+	@PostMapping("/unvalidatedExpressions")
+	public ResponseEntity<?> getInvalidatedExpressions(@RequestBody Admin_hash admin_hash) {
+		return expressionService.getInvalidatedExpressions(admin_hash);
 	}
 }
