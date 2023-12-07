@@ -5,8 +5,7 @@ import UnvalidatedExpression from "../components/UnvalidatedExpression";
 import { ExpressionType } from "../types/types";
 
 const Admin = () => {
-
- /*  const expressionsData = [
+  /*  const expressionsData = [
     {
       id: 1,
       expression: "Meter la pata",
@@ -94,6 +93,7 @@ const Admin = () => {
       const response = await axios.get(
         "http://localhost:8080/unvalidatedExpressions"
       );
+      console.log(response.data);
       setRequestedExpressions(response.data);
     } catch (error) {
       console.error(error);
@@ -126,7 +126,7 @@ const Admin = () => {
   useEffect(() => {
     fetchExpressions();
 
-  /*   const storedHash = localStorage.getItem("hash");
+    /*   const storedHash = localStorage.getItem("hash");
     if (storedHash) {
       setHash(storedHash);
       fetchExpressions();
@@ -137,14 +137,16 @@ const Admin = () => {
 
   return (
     <div>
-      {requestedExpressions.map((expression) => (
-        <UnvalidatedExpression
-          handleDelete={handleDeleteExpression}
-          handleValidate={handleValidateExpression}
-          expression={expression}
-          key={expression.id}
-        />
-      ))}
+      {!requestedExpressions && <p>Loading...</p>}
+      {requestedExpressions &&
+        requestedExpressions.map((expression) => (
+          <UnvalidatedExpression
+            handleDelete={handleDeleteExpression}
+            handleValidate={handleValidateExpression}
+            expression={expression}
+            key={expression.id}
+          />
+        ))}
     </div>
   );
 };
