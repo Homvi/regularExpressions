@@ -88,12 +88,16 @@ const Admin = () => {
   //GET expressions
   const fetchExpressions = async () => {
     const hash = localStorage.getItem("hash");
+    console.log("hash from local storage", hash);
+
     try {
+      console.log("Entering try block");
+
       const response = await axios.post(
         "http://localhost:8080/unvalidatedExpressions",
         { hash: hash }
       );
-      console.log(response.data);
+      console.log(response);
       setRequestedExpressions(response.data);
       alert("You are an admin!");
     } catch (error) {
@@ -137,7 +141,7 @@ const Admin = () => {
     if (!localStorage.getItem("hash")) {
       navigate("/login");
     }
-    
+
     fetchExpressions();
 
     /*   const storedHash = localStorage.getItem("hash");
