@@ -60,5 +60,11 @@ INSERT INTO DB_REGEXPRESSIONS.expressions(languageOfExpression, expression, righ
     ('spanish', 'Dar la vuelta a la tortilla', 'To change the situation in one\'s favor', 'To flip an omelette', 'To change your opinion about something', 3,True),
     ('spanish', 'Tener mucho morro / Tener mucha cara', 'To take advantage of people or situations', 'To pretend to be someone else', 'To have a serious expression', 3,True);
     
+INSERT INTO DB_REGEXPRESSIONS.expressions(languageOfExpression, expression, rightAnswer, falseAnswerOne, falseAnswerTwo, creatorId,validated) VALUES
+	('spanish', 'Estar metido en el ajo', 'To be aware of something that is very secretive', 'To be part of a cooking club', 'Not find out what is happening
+', 3,False),
+    ('spanish', 'Quedarse frito', 'To fall asleep', 'To become a crispy snack', 'To be very alert', 3,False),
+    ('spanish', 'Comerse el coco', 'To overthink about something', 'To enjoy coconut-flavored treats', 'To harm oneself', 3,False);
+    
 SELECT * FROM DB_REGEXPRESSIONS.users;
 SELECT * FROM DB_REGEXPRESSIONS.expressions;
