@@ -11,7 +11,7 @@ const RequestExpression = () => {
 
   const [loggedInUser] = useContext(UserContext);
 
-  const requestExpression = (e: FormEvent<HTMLFormElement>) => {
+  const requestExpression = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const newExpression = {
@@ -23,7 +23,7 @@ const RequestExpression = () => {
         creatorId: loggedInUser.userId,
       };
 
-      const response = axios.post(
+      const response = await axios.post(
         "http://localhost/8080/sendExpression",
         newExpression
       );
