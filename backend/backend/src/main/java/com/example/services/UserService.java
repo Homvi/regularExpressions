@@ -1,5 +1,7 @@
 package com.example.services;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -11,13 +13,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.DTO.LoginResponse;
+import com.example.entities.Admin_hash;
 import com.example.entities.User;
+import com.example.repository.AdminRepository;
 import com.example.repository.UserRepository;
 
 @Service
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private AdminRepository adminRepository;
 	
 	UserService(UserRepository userRepository){
 		this.userRepository = userRepository;
@@ -66,10 +72,13 @@ public class UserService {
 //		Optional<User> usernameExists = userList.stream().filter(userRepositoryItem -> userRepositoryItem.getUsername().equals(user.getUsername())).findFirst();
 		
 		if(emailUserExists.isPresent()){
-			if(CheckPassword(user.getPassword(), emailUserExists.get().getPassword())) {
+			if(checkPassword(user.getPassword(), emailUserExists.get().getPassword())) {
 				LoginResponse loginResponse;
 				if(emailUserExists.get().getIsAdmin() == 1) {
 					String hash = generateHash();
+					Admin_hash admin_hash = new Admin_hash(hash, getExpiration());
+					adminRepository.save(admin_hash);
+					
 					loginResponse = new LoginResponse(user.getId(), user.getFirstName(),
 							user.getSurname(), user.getUsername(), hash);
 				} else {
@@ -87,7 +96,15 @@ public class UserService {
 		}
 	}
 	
-	public static boolean CheckPassword(String password, String hashedPassword) {
+	public static Long getExpiration() {
+		Instant now = Instant.now();
+
+        Instant in48Hours = now.plus(Duration.ofHours(48));
+
+        return in48Hours.getEpochSecond();
+	}
+	
+	public static boolean checkPassword(String password, String hashedPassword) {
 		return BCrypt.checkpw(password, hashedPassword);
 	}
 	
