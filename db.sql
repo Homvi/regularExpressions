@@ -70,6 +70,24 @@ INSERT INTO DB_REGEXPRESSIONS.expressions(languageOfExpression, expression, righ
 ', 3,False),
     ('spanish', 'Quedarse frito', 'To fall asleep', 'To become a crispy snack', 'To be very alert', 3,False),
     ('spanish', 'Comerse el coco', 'To overthink about something', 'To enjoy coconut-flavored treats', 'To harm oneself', 3,False);
+
+    INSERT INTO DB_REGEXPRESSIONS.expressions(languageOfExpression, expression, rightAnswer, falseAnswerOne, falseAnswerTwo, creatorId,validated) VALUES
+	('spanish', 'Irse por las ramas', 'To deviate from the main topic while speaking', 'To get lost in the woods', 'Go to the important topic
+', 3,True),
+    ('spanish', 'Perder la cabeza', 'To lose your composure', 'To lose your head literally', 'To become extremely forgetful
+', 3,True),
+    ('spanish', 'Darse con un canto en los dientes', 'To be satisfied when the final result of something is better than expected', 'To hit yourself with a rock in the teeth', 'To be sad when things turn out worse than expected', 3,True), 
+    ('spanish', 'Estar como una regadera', 'To be crazy', 'To be very thirsty', 'To be like a watering can', 3,True),
+    ('english', 'To spill the beans', 'Contar un secreto por error', 'Tirar habas', 'Cabrearse mucho ', 3,True),
+    ('english', 'To show someone the ropes', 'Enseñar a alguien los conceptos básicos', 'Mostrar a alguien las cuerdas', 'Contar a alguien los secretos más profundos', 3,True),
+    ('english', 'To ring a bell', 'Ser familiar', 'Tocar una campana', 'No recordar algo', 3,True),
+    ('english', 'Hold your horses', 'No te apresures', 'Mantén a tus caballos', 'No te cabrees', 3,True),
+    ('english', 'Off the top of my head', 'De memoria', 'Desde la parte superior de mi cabeza', 'Pensar demasiado', 3,True),
+	('english', 'Put a sock in it', 'Guarda silencio', 'Ponte un calcetín', 'Abrígate', 3,False),
+    ('english', 'To bark up the wrong tree ', 'Buscar soluciones en el lugar equivocado', 'Ladrarle a un árbol', 'Acusar a alguien inocente', 3,False),
+    ('english', 'The lion’s share', 'La mejor parte', 'La parte del león', 'Ser el más importante de un grupo', 3,False),
+    ('english', 'It’s not my cup of tea ', 'No me gusta', 'No es mi taza de té', 'No es asunto mío', 3,False),
+    ('english', 'To pull your socks up', 'Esforzarse más', 'Subirse los calcetines', 'Estirarse antes de entrenar', 3,False); 
     
 SELECT * FROM DB_REGEXPRESSIONS.users;
 SELECT * FROM DB_REGEXPRESSIONS.expressions;
