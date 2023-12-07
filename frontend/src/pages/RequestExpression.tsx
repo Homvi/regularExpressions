@@ -12,7 +12,6 @@ const RequestExpression = () => {
   //const [loggedInUser] = useContext(UserContext);
 
   const requestExpression = async (e: FormEvent<HTMLFormElement>) => {
-    
     e.preventDefault();
 
     const newExpression = {
@@ -22,9 +21,9 @@ const RequestExpression = () => {
       falseAnswerOne,
       falseAnswerTwo,
       creatorId: 2,
+      validated: false,
     };
     try {
-
       const response = await axios.post(
         "http://localhost/8080/sendExpression",
         newExpression
