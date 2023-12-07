@@ -80,8 +80,6 @@ const Admin = () => {
     },
   ];
  */
-
-  //const [hash, setHash] = useState("");
   const [requestedExpressions, setRequestedExpressions] = useState<
     ExpressionType[]
   >([]);
@@ -89,12 +87,15 @@ const Admin = () => {
 
   //GET expressions
   const fetchExpressions = async () => {
+    const hash = localStorage.getItem("hash");
     try {
-      const response = await axios.get(
-        "http://localhost:8080/unvalidatedExpressions"
+      const response = await axios.post(
+        "http://localhost:8080/unvalidatedExpressions",
+        { hash: hash }
       );
       console.log(response.data);
       setRequestedExpressions(response.data);
+      alert("You are an admin!");
     } catch (error) {
       console.error(error);
       // Handle the error more gracefully here
@@ -133,6 +134,10 @@ const Admin = () => {
   };
 
   useEffect(() => {
+    if (!localStorage.getItem("hash")) {
+      navigate("/login");
+    }
+    
     fetchExpressions();
 
     /*   const storedHash = localStorage.getItem("hash");
