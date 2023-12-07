@@ -1,6 +1,6 @@
 import axios from "axios";
-import { FormEvent, useContext, useState } from "react";
-import { UserContext } from "../UserContext";
+import { FormEvent, useState } from "react";
+//import { UserContext } from "../UserContext";
 
 const RequestExpression = () => {
   const [expressionLang, setexpressionLang] = useState("Spanish");
@@ -9,19 +9,21 @@ const RequestExpression = () => {
   const [falseAnswerOne, setFalseAnswerOne] = useState("");
   const [falseAnswerTwo, setFalseAnswerTwo] = useState("");
 
-  const [loggedInUser] = useContext(UserContext);
+  //const [loggedInUser] = useContext(UserContext);
 
   const requestExpression = async (e: FormEvent<HTMLFormElement>) => {
+    
     e.preventDefault();
+
+    const newExpression = {
+      languageOfExpression: expressionLang.toLowerCase(),
+      expression,
+      rightAnswer,
+      falseAnswerOne,
+      falseAnswerTwo,
+      creatorId: 2,
+    };
     try {
-      const newExpression = {
-        languageOfExpression: expressionLang.toLowerCase(),
-        expression,
-        rightAnswer,
-        falseAnswerOne,
-        falseAnswerTwo,
-        creatorId: loggedInUser.userId,
-      };
 
       const response = await axios.post(
         "http://localhost/8080/sendExpression",
