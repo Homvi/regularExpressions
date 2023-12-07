@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import MobileNavbar from "./components/MobileNavbar";
 import SpanishExpressions from "./pages/SpanishExpressions";
 import EnglishExpressions from "./pages/EnglishExpressions";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/spanishExpressions" element={<SpanishExpressions />} />
         <Route path="/englishExpressions" element={<EnglishExpressions />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </>
   );

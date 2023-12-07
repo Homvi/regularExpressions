@@ -1,13 +1,13 @@
-import { Link, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import { useContext } from "react";
 
 const MobileNavbar = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-
+  const navigate = useNavigate();
   const handleLogout = () => {
     setLoggedInUser({});
-    return redirect("/");
+    navigate("/");
   };
 
   return (
@@ -31,21 +31,21 @@ const MobileNavbar = () => {
             </svg>
           </div>
           <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-          {!loggedInUser.firstName && (
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-          )}
-          {!loggedInUser.firstName && (
-            <li>
-              <Link to="/login">Log in</Link>
-            </li>
-          )}
+            {!loggedInUser.firstName && (
+              <li>
+                <Link to="/register">Register</Link>
+              </li>
+            )}
+            {!loggedInUser.firstName && (
+              <li>
+                <Link to="/login">Log in</Link>
+              </li>
+            )}
             {loggedInUser.firstName && (
-            <li onClick={handleLogout}>
-              <a href="#">Log out</a>
-            </li>
-          )}
+              <li onClick={handleLogout}>
+                <a href="#">Log out</a>
+              </li>
+            )}
             <li>
               {" "}
               <a href="#">Change language</a>
