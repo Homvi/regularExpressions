@@ -20,7 +20,7 @@ const RequestExpression = () => {
         rightAnswer,
         falseAnswerOne,
         falseAnswerTwo,
-        userId: loggedInUser.userId,
+        creatorId: loggedInUser.userId,
       };
 
       const response = axios.post(
