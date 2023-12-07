@@ -31,6 +31,7 @@ const Login = () => {
         userId: response.data.id,
         userName: response.data.username,
       });
+      console.log(response.data.hash);
       if (loggedInUser.firstName) {
         setTimeout(() => {
           return redirect("/");
