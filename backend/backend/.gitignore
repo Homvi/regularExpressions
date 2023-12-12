@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### Java ###
-/backend/backend/src/main/resources/application.properties
+*.properties
