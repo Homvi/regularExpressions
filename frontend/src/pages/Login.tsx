@@ -12,7 +12,7 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({isFontSizeLarge}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const [, setLoggedInUser] = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -24,12 +24,12 @@ const Login: React.FC<LoginProps> = ({isFontSizeLarge}) => {
     };
 
     try {
-      console.log("Trying to post data");
       const response = await axios.post("http://localhost:8080/login", user);
-      console.log(response);
       toast("You have succesfully logged in!");
       setEmail("");
       setPassword("");
+      console.log("The response data is: ", response.data);
+      
       setLoggedInUser({
         firstName: response.data.firstname,
         lastName: response.data.surname,
@@ -42,11 +42,7 @@ const Login: React.FC<LoginProps> = ({isFontSizeLarge}) => {
       if (response.data.hash === null) {
         localStorage.setItem("hash", "");
       }
-      if (loggedInUser.firstName) {
-        setTimeout(() => {
           navigate("/");
-        }, 2000);
-      }
     } catch (error) {
       toast("Oops it didn't work!");
       console.log(error);

@@ -73,20 +73,20 @@ public class UserService {
 		
 		if(emailUserExists.isPresent()){
 			if(checkPassword(user.getPassword(), emailUserExists.get().getPassword())) {
-				LoginResponse loginResponse;
 				if(emailUserExists.get().getIsAdmin() == 1) {
 					String hash = generateHash();
 					Admin_hash admin_hash = new Admin_hash(hash, getExpiration());
 					adminRepository.save(admin_hash);
 					
-					loginResponse = new LoginResponse(user.getId(), user.getFirstName(),
-							user.getSurname(), user.getUsername(), hash);
+					LoginResponse loginResponse = new LoginResponse(emailUserExists.get().getId(), emailUserExists.get().getFirstName(),
+							emailUserExists.get().getSurname(), emailUserExists.get().getUsername(), hash);
+					return ResponseEntity.ok(loginResponse);
 				} else {
-					loginResponse = new LoginResponse(user.getId(), user.getFirstName(),
+					LoginResponse loginResponse = new LoginResponse(user.getId(), user.getFirstName(),
 							user.getSurname(), user.getUsername(), null);
+					return ResponseEntity.ok(loginResponse);
 				}
 				
-				return ResponseEntity.ok(loginResponse);
 			} else {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The password is incorrect.");
 			}

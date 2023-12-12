@@ -4,7 +4,7 @@ import React, { createContext, useState, ReactNode } from "react";
 interface User {
   firstName?: string;
   lastName?: string;
-  userId?: string | number; // Change to number if the userId is a number
+  userId?: number | null; // Change to number if the userId is a number
   userName?: string;
 }
 
@@ -21,7 +21,12 @@ interface UserProviderProps {
 
 // UserProvider component
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-  const [loggedInUser, setLoggedInUser] = useState<User>({});
+  const [loggedInUser, setLoggedInUser] = useState<User>({
+    firstName: "",
+    lastName: "",
+    userId: null,
+    userName: "",
+  });
 
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>

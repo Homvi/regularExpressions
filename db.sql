@@ -28,6 +28,15 @@ CREATE TABLE IF NOT EXISTS expressions(
     FOREIGN KEY (creatorId) REFERENCES users(userId)
 );
 
+CREATE TABLE IF NOT EXISTS favorites(
+	favoriteId INT AUTO_INCREMENT,
+    userId INT,
+    expressionId INT,
+    PRIMARY KEY (favoriteId),
+    FOREIGN KEY (userId) REFERENCES users(userId),
+    FOREIGN KEY (expressionId) REFERENCES expressions(expressionId)
+);
+
 CREATE TABLE IF NOT EXISTS admin_hashes(
 	hashId INT AUTO_INCREMENT,
 	hash VARCHAR(200),
@@ -90,7 +99,16 @@ INSERT INTO DB_REGEXPRESSIONS.expressions(languageOfExpression, expression, righ
     ('english', 'The lion’s share', 'La mejor parte', 'La parte del león', 'Ser el más importante de un grupo', 3,False),
     ('english', 'It’s not my cup of tea ', 'No me gusta', 'No es mi taza de té', 'No es asunto mío', 3,False),
     ('english', 'To pull your socks up', 'Esforzarse más', 'Subirse los calcetines', 'Estirarse antes de entrenar', 3,False); 
-    
+/*
+Ejemplo 
+INSERT INTO DB_REGEXPRESSIONS.favorites (userId, expressionId) VALUES (1, 1);
+*/
 SELECT * FROM DB_REGEXPRESSIONS.users;
 SELECT * FROM DB_REGEXPRESSIONS.expressions;
+SELECT * FROM DB_REGEXPRESSIONS.favorites;
+
+SELECT * FROM DB_REGEXPRESSIONS.expressions
+INNER JOIN favorites f ON expressions.expressionId = f.expressionId
+WHERE f.userId = 1;
+
 SELECT * FROM DB_REGEXPRESSIONS.admin_hashes;

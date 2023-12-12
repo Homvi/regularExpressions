@@ -1,7 +1,7 @@
 import axios from "axios";
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-//import { UserContext } from "../UserContext";
+import { UserContext } from "../UserContext";
 
 const RequestExpression = () => {
   const [expressionLang, setexpressionLang] = useState("Spanish");
@@ -10,10 +10,12 @@ const RequestExpression = () => {
   const [falseAnswerOne, setFalseAnswerOne] = useState("");
   const [falseAnswerTwo, setFalseAnswerTwo] = useState("");
 
-  //const [loggedInUser] = useContext(UserContext);
+  const [loggedInUser] = useContext(UserContext);
 
   const requestExpression = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    console.log(loggedInUser);
 
     const newExpression = {
       languageOfExpression: expressionLang.toLowerCase(),
@@ -21,19 +23,22 @@ const RequestExpression = () => {
       rightAnswer,
       falseAnswerOne,
       falseAnswerTwo,
-      creatorId: 2,
-      validated: 0,
+      creatorId: loggedInUser.userId,
     };
 
     console.log(newExpression);
-    
+
     try {
       const response = await axios.post(
-        "http://localhost/8080/sendExpression",
+        "http://localhost:8080/sendExpression",
         newExpression
       );
       console.log(response);
       toast("You have succesfully requested a new expression!");
+      setExpression("");
+      setRightAnswer("");
+      setFalseAnswerOne("");
+      setFalseAnswerTwo("");
     } catch (error) {
       console.log(error);
       toast.error("Oops it didn't work!");
