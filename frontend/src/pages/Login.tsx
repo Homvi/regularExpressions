@@ -20,12 +20,12 @@ const Login = () => {
     };
 
     try {
-      console.log("Trying to post data");
       const response = await axios.post("http://localhost:8080/login", user);
-      console.log(response);
       toast("You have succesfully logged in!");
       setEmail("");
       setPassword("");
+      console.log("The response data is: ", response.data);
+      
       setLoggedInUser({
         firstName: response.data.firstname,
         lastName: response.data.surname,

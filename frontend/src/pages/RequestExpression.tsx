@@ -23,7 +23,7 @@ const RequestExpression = () => {
       rightAnswer,
       falseAnswerOne,
       falseAnswerTwo,
-      creatorId: 2,
+      creatorId: loggedInUser.userId,
     };
 
     console.log(newExpression);
@@ -35,6 +35,10 @@ const RequestExpression = () => {
       );
       console.log(response);
       toast("You have succesfully requested a new expression!");
+      setExpression("");
+      setRightAnswer("");
+      setFalseAnswerOne("");
+      setFalseAnswerTwo("");
     } catch (error) {
       console.log(error);
       toast.error("Oops it didn't work!");
