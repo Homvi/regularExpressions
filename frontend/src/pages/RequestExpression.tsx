@@ -1,7 +1,7 @@
 import axios from "axios";
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-//import { UserContext } from "../UserContext";
+import { UserContext } from "../UserContext";
 
 const RequestExpression = () => {
   const [expressionLang, setexpressionLang] = useState("Spanish");
@@ -10,12 +10,12 @@ const RequestExpression = () => {
   const [falseAnswerOne, setFalseAnswerOne] = useState("");
   const [falseAnswerTwo, setFalseAnswerTwo] = useState("");
 
-  //const [loggedInUser] = useContext(UserContext);
+  const [loggedInUser] = useContext(UserContext);
 
   const requestExpression = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(expressionLang.toLowerCase());
+    console.log(loggedInUser);
 
     const newExpression = {
       languageOfExpression: expressionLang.toLowerCase(),
