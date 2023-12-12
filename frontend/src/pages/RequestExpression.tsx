@@ -24,7 +24,6 @@ const RequestExpression = () => {
       falseAnswerOne,
       falseAnswerTwo,
       creatorId: 2,
-      validated: 0,
     };
 
     console.log(newExpression);
