@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const [, setLoggedInUser] = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -38,11 +38,7 @@ const Login = () => {
       if (response.data.hash === null) {
         localStorage.setItem("hash", "");
       }
-      if (loggedInUser.firstName) {
-        setTimeout(() => {
           navigate("/");
-        }, 2000);
-      }
     } catch (error) {
       toast("Oops it didn't work!");
       console.log(error);
