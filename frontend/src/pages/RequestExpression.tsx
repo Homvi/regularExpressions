@@ -15,6 +15,8 @@ const RequestExpression = () => {
   const requestExpression = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    console.log(expressionLang.toLowerCase());
+
     const newExpression = {
       languageOfExpression: expressionLang.toLowerCase(),
       expression,
@@ -26,10 +28,10 @@ const RequestExpression = () => {
     };
 
     console.log(newExpression);
-    
+
     try {
       const response = await axios.post(
-        "http://localhost/8080/sendExpression",
+        "http://localhost:8080/sendexpression",
         newExpression
       );
       console.log(response);
