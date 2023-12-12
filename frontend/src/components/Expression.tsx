@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import { ExpressionType } from "../types/types";
 
+
 interface ExpressionProps {
   expression: ExpressionType;
   handleChoice: (choice: string) => void;
+  isFontSizeLarge: boolean;
 }
 
 const Expression: React.FC<ExpressionProps> = ({
   expression,
   handleChoice,
+  isFontSizeLarge,
+  
 }) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -39,7 +43,7 @@ const Expression: React.FC<ExpressionProps> = ({
           : " flex translate-x-60  flex-col justify-center items-center gap-3 transition-all duration-300 opacity-0"
       }
     >
-      <h2 className="text-2xl">{expression.expression}</h2>
+      <h2 className= {isFontSizeLarge ? 'text-4xl' : 'text-2xl'}>{expression.expression}</h2>
       <div
         style={{ order: randomNumbers[0] }}
         onClick={() => handleChoice(expression.rightAnswer)}

@@ -9,7 +9,7 @@ interface User {
 }
 
 // Define the type for the context value
-type UserContextType = [User, React.Dispatch<React.SetStateAction<User>>];
+type UserContextType = [User, React.Dispatch<React.SetStateAction<User>>];         
 
 // Create the context with a default value
 export const UserContext = createContext<UserContextType>([{}, () => {}]);

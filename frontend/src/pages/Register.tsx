@@ -3,7 +3,11 @@ import { FormEvent, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Register = () => {
+interface RegisterProps {
+  isFontSizeLarge: boolean;
+}
+
+const Register: React.FC<RegisterProps> = ({isFontSizeLarge}) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
@@ -58,7 +62,7 @@ const Register = () => {
   return (
     <div className="min-h-screen w-full flex flex-col items-center">
       <ToastContainer />
-      <h1 className="text-center text-3xl my-3">Register</h1>
+      <h1 className={`text-center my-3 ${isFontSizeLarge ? 'text-5xl' : 'text-3xl'}`}>Register</h1>
       {/* form */}
       <form
         onSubmit={handleSubmit}
@@ -67,7 +71,7 @@ const Register = () => {
         {/* firstName input */}
         <label className="form-control w-full">
           <div className="label">
-            <span className="label-text">First name</span>
+            <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>First name</span>
           </div>
           <input
             value={firstName}
@@ -81,7 +85,7 @@ const Register = () => {
         {/* lastName input */}
         <label className="form-control w-full">
           <div className="label">
-            <span className="label-text">Last name</span>
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Last name</span>
           </div>
           <input
             value={lastName}
@@ -95,7 +99,7 @@ const Register = () => {
         {/* userName input */}
         <label className="form-control w-full">
           <div className="label">
-            <span className="label-text">Username</span>
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Username</span>
           </div>
           <input
             value={userName}
@@ -109,7 +113,7 @@ const Register = () => {
         {/* email input */}
         <label className="form-control w-full">
           <div className="label">
-            <span className="label-text">Email</span>
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Email</span>
           </div>
           <input
             value={email}
@@ -123,7 +127,7 @@ const Register = () => {
         {/* password input */}
         <label className="form-control w-full">
           <div className="label">
-            <span className="label-text">Password</span>
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Password</span>
           </div>
           <input
             value={password}
@@ -136,7 +140,7 @@ const Register = () => {
         {/* passwordAgain input */}
         <label className="form-control w-full">
           <div className="label">
-            <span className="label-text">Password again</span>
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Password again</span>
           </div>
           <input
             value={passwordAgain}
@@ -149,7 +153,7 @@ const Register = () => {
         {/* Privacy */}
         <div className="form-control my-3 ">
           <label className="label cursor-pointer">
-            <span className="label-text">
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>
               I have read an accept the privacy policy
             </span>
             <input
@@ -162,7 +166,7 @@ const Register = () => {
             />
           </label>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className={`btn btn-primary ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>
           Register
         </button>
       </form>

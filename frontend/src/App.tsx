@@ -9,22 +9,30 @@ import SpanishExpressions from "./pages/SpanishExpressions";
 import EnglishExpressions from "./pages/EnglishExpressions";
 import Admin from "./pages/Admin";
 import RequestExpression from "./pages/RequestExpression";
+import { useState } from "react";
 
 function App() {
+const [isFontSizeLarge, setIsFontSizeLarge] = useState(false)
+
+
+const changeFontSize = () => {
+  setIsFontSizeLarge(!isFontSizeLarge)
+}
+
   return (
     <>
       <div className="hidden md:block">
-        <Navbar />
+        <Navbar changeFontSize={changeFontSize} isFontSizeLarge={isFontSizeLarge}/>
       </div>
       <div className="block md:hidden">
         <MobileNavbar />
       </div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/spanishExpressions" element={<SpanishExpressions />} />
-        <Route path="/englishExpressions" element={<EnglishExpressions />} />
+        <Route path="/" element={<Home isFontSizeLarge={isFontSizeLarge}/>} />
+        <Route path="/register" element={<Register  isFontSizeLarge={isFontSizeLarge}/>} />
+        <Route path="/login" element={<Login isFontSizeLarge={isFontSizeLarge}/>} />
+        <Route path="/spanishExpressions" element={<SpanishExpressions isFontSizeLarge={isFontSizeLarge}/>} />
+        <Route path="/englishExpressions" element={<EnglishExpressions isFontSizeLarge={isFontSizeLarge}/>} />
         <Route path="/requestExpression" element={<RequestExpression />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>

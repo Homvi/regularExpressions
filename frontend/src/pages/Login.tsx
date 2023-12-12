@@ -5,7 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../UserContext";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+interface LoginProps {
+  isFontSizeLarge: boolean;
+}
+
+const Login: React.FC<LoginProps> = ({isFontSizeLarge}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -52,7 +56,7 @@ const Login = () => {
   return (
     <div className="min-h-screen w-full flex flex-col items-center">
       <ToastContainer />
-      <h1 className="text-center text-3xl my-3">Log in</h1>
+      <h1 className={`text-center my-3 ${isFontSizeLarge ? 'text-5xl' : 'text-3xl'}`}>Log in</h1>
       {/* form */}
       <form
         onSubmit={handleSubmit}
@@ -61,7 +65,7 @@ const Login = () => {
         {/* email input */}
         <label className="form-control w-full">
           <div className="label">
-            <span className="label-text">Email</span>
+            <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Email</span>
           </div>
           <input
             value={email}
@@ -75,7 +79,7 @@ const Login = () => {
         {/* password input */}
         <label className="form-control w-full">
           <div className="label">
-            <span className="label-text">Password</span>
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Password</span>
           </div>
           <input
             value={password}

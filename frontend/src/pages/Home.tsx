@@ -4,7 +4,11 @@ import britishFlag from "../assets/uk_flag.png";
 import { UserContext } from "../UserContext";
 import { useContext } from "react";
 
-const Home = () => {
+interface HomeProps {
+  isFontSizeLarge: boolean;
+}
+
+const Home: React.FC<HomeProps> = ({ isFontSizeLarge }) => {
   const [user] = useContext(UserContext);
 
   return (
@@ -12,11 +16,11 @@ const Home = () => {
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content text-center">
           <div>
-            <h1 className="text-3xl font-bold">RegularExpressions</h1>
+            <h1 className='font-bold text-xl'></h1>
             {user.firstName ? (
-              <p>Hello, {user.firstName}</p>
+              <p className={isFontSizeLarge ? 'text-xl' : 'text-md'}>Hello, {user.firstName}</p>
             ) : (
-              <p className="py-6">
+              <p className={isFontSizeLarge ? ' py-6 text-3xl' : 'py-6 text-xl'}>
                 A webpage where you can learn expressions while having fun 😁😀
               </p>
             )}
@@ -44,10 +48,8 @@ const Home = () => {
               </Link>
             </div>
             {!user.firstName && (
-              <Link
-                to={"/register"}
-              >
-                <button className="btn btn-accent my-6">
+              <Link to={"/register"}>
+                <button className={`btn btn-accent my-6 ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>
                   Register to add your own expression
                 </button>
               </Link>
