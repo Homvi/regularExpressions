@@ -54,6 +54,7 @@ public class ExpressionService {
 	}
 
 	public void addExpression(Expression expression) {
+		expression.setValidated((long) 0);
         expressionRepository.save(expression);
     }
 	
