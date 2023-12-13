@@ -4,7 +4,12 @@ import Expression from "../components/Expression";
 import { ExpressionType } from "../types/types";
 import Score from "../components/Score";
 
-const SpanishExpressions = () => {
+interface SpanishExpressionsProps {
+  isFontSizeLarge: boolean;
+}
+
+
+const SpanishExpressions: React.FC<SpanishExpressionsProps> = ({isFontSizeLarge }) => {
   const [loading, setLoading] = useState(true);
   const [isGameFinished, setIsGameFinished] = useState(false);
 
@@ -134,6 +139,7 @@ const SpanishExpressions = () => {
           key={activeExpressionIndex}
           expression={activeExpression}
           handleChoice={handleChoice}
+          isFontSizeLarge = {isFontSizeLarge}
         />
       )}
       {isGameFinished && <Score score={score} resetGame={resetGame} />}

@@ -62,7 +62,7 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge}) => {
   return (
     <div className="min-h-screen w-full flex flex-col items-center">
       <ToastContainer />
-      <h1 className={`text-center my-3 ${isFontSizeLarge ? 'text-5xl' : 'text-3xl'}`}>Register</h1>
+      <h1 className={`text-center my-3 ${isFontSizeLarge ? 'text-4xl' : 'text-3xl'}`}>Register</h1>
       {/* form */}
       <form
         onSubmit={handleSubmit}

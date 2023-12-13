@@ -49,21 +49,21 @@ const Expression: React.FC<ExpressionProps> = ({
         onClick={() => handleChoice(expression.rightAnswer)}
         className="bg-green-200 min-w-[200px] min-h-[150px] md:min-w-[500px] flex justify-center items-center p-3 rounded-lg cursor-pointer"
       >
-        <p>{expression.rightAnswer}</p>
+        <p className= {isFontSizeLarge ? 'text-xl' : 'text-md'}>{expression.rightAnswer}</p>
       </div>
       <div
         style={{ order: randomNumbers[1] }}
         className="bg-blue-200 min-w-[200px] min-h-[150px] md:min-w-[500px] flex justify-center items-center p-3 rounded-lg cursor-pointer"
         onClick={() => handleChoice(expression.falseAnswerOne)}
       >
-        <p>{expression.falseAnswerOne}</p>
+        <p className= {isFontSizeLarge ? 'text-xl' : 'text-md'}>{expression.falseAnswerOne}</p>
       </div>
       <div
         style={{ order: randomNumbers[2] }}
         className="bg-blue-200 min-w-[200px] min-h-[150px] md:min-w-[500px] flex justify-center items-center p-3 rounded-lg cursor-pointer"
         onClick={() => handleChoice(expression.falseAnswerTwo)}
       >
-        <p>{expression.falseAnswerTwo}</p>
+        <p className= {isFontSizeLarge ? 'text-xl' : 'text-md'}>{expression.falseAnswerTwo}</p>
       </div>
     </div>
   );

@@ -33,8 +33,8 @@ const changeFontSize = () => {
         <Route path="/login" element={<Login isFontSizeLarge={isFontSizeLarge}/>} />
         <Route path="/spanishExpressions" element={<SpanishExpressions isFontSizeLarge={isFontSizeLarge}/>} />
         <Route path="/englishExpressions" element={<EnglishExpressions isFontSizeLarge={isFontSizeLarge}/>} />
-        <Route path="/requestExpression" element={<RequestExpression />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/requestExpression" element={<RequestExpression isFontSizeLarge={isFontSizeLarge}/>} />
+        <Route path="/admin" element={<Admin isFontSizeLarge={isFontSizeLarge} />} />
       </Routes>
     </>
   );

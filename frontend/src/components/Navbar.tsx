@@ -27,6 +27,42 @@ const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge }) => {
       </div>
       <div className="flex-none">
       <ul className={`menu menu-horizontal px-1 ${isFontSizeLarge ? 'text-xl' : ''}`}>
+      <li>
+      <details>
+      <summary>
+        Change language
+      </summary>
+        <ul className="flex">
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <ul>
+                <li><button className="btn mb-2">Español</button></li>
+                <li><button className="btn">English</button></li>
+              </ul>
+            </label>
+          </div>
+        </ul>
+      </details>
+      </li>
+      <li>
+      <details>
+      <summary>
+        Accesibility
+      </summary>
+        <ul className="flex">
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <span className="label-text">Large font size</span> 
+              <input
+                type="checkbox" className="toggle ml-3" 
+                onChange={() => changeFontSize(!isFontSizeLarge)} // Pass the negation of current value
+                checked={isFontSizeLarge}
+              />
+            </label>
+          </div>
+        </ul>
+      </details>
+          </li>
           {!loggedInUser.firstName && (
             <li>
               <Link to="/register">Register</Link>
@@ -42,25 +78,6 @@ const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge }) => {
               <a href="#">Log out</a>
             </li>
           )}
-          <li>
-            <a href="#">Change language</a>
-          </li>
-          <li>
-          <details>
-          <summary>
-            Accesibility
-          </summary>
-          <ul className=" bg-base-100 rounded-t-none flex">
-            <div>Large font size</div>
-            <input
-              type="checkbox"
-              onChange={() => changeFontSize(!isFontSizeLarge)} // Pass the negation of current value
-              checked={isFontSizeLarge}
-              className="checkbox"
-              />
-          </ul>
-        </details>
-          </li>
         </ul>
       </div>
     </div>
