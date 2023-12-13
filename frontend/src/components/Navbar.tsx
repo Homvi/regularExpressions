@@ -28,22 +28,26 @@ const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge }) => {
       <div className="flex-none">
       <ul className={`menu menu-horizontal px-1 ${isFontSizeLarge ? 'text-xl' : ''}`}>
       <li>
-            <a href="#">Change language</a>
-          </li>
-          <li>
-          <details>
-          <summary>
-            Accesibility
-          </summary>
-          <ul className="flex">
-            <div>Large font size</div>
-            <input
-              type="checkbox" className="toggle ml-3" 
-              onChange={() => changeFontSize(!isFontSizeLarge)} // Pass the negation of current value
-              checked={isFontSizeLarge}
+          <a href="#">Change language</a>
+      </li>
+      <li>
+      <details>
+      <summary>
+        Accesibility
+      </summary>
+        <ul className="flex">
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <span className="label-text">Large font size</span> 
+              <input
+                type="checkbox" className="toggle ml-3" 
+                onChange={() => changeFontSize(!isFontSizeLarge)} // Pass the negation of current value
+                checked={isFontSizeLarge}
               />
-          </ul>
-        </details>
+            </label>
+          </div>
+        </ul>
+      </details>
           </li>
           {!loggedInUser.firstName && (
             <li>

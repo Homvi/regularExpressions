@@ -3,7 +3,12 @@ import { FormEvent, useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { UserContext } from "../UserContext";
 
-const RequestExpression = () => {
+
+interface RequestExpressionProps {
+  isFontSizeLarge: boolean;
+}
+
+const RequestExpression: React.FC<RequestExpressionProps> = ({ isFontSizeLarge }) => {
   const [expressionLang, setexpressionLang] = useState("Spanish");
   const [expression, setExpression] = useState("");
   const [rightAnswer, setRightAnswer] = useState("");
@@ -48,13 +53,13 @@ const RequestExpression = () => {
   return (
     <div className="flex flex-col justify-center w-full items-center">
       <ToastContainer />
-      <h1 className="text-3xl text-center my-3">Request new expression</h1>
+      <h1 className={`text-center my-3 ${isFontSizeLarge ? 'text-4xl' : 'text-3xl'}`}>Request new expression</h1>
       <form
         onSubmit={requestExpression}
         className="flex flex-col bg-gray-5000 w-[700px] p-10 rounded-lg shadow-xl"
       >
         <select
-          className="select w-full mb-2"
+          className={isFontSizeLarge ? 'select w-full mb-2 text-xl' : 'select w-full mb-2 text-md'}
           value={expressionLang}
           onChange={(e) => setexpressionLang(e.target.value)}
         >
@@ -64,7 +69,7 @@ const RequestExpression = () => {
         {/* expression */}
         <label className="form-control w-full mb-2">
           <div className="label">
-            <span className="label-text">Expression</span>
+            <span className={isFontSizeLarge ? 'label-text text-xl' : ' label-text text-md'}>Expression</span>
           </div>
           <input
             type="text"
@@ -77,7 +82,7 @@ const RequestExpression = () => {
         {/* right answer */}
         <label className="form-control w-full mb-2">
           <div className="label">
-            <span className="label-text">Right Answer</span>
+            <span className={isFontSizeLarge ? 'label-text text-xl' : ' label-text text-md'}>Right Answer</span>
           </div>
           <input
             type="text"
@@ -90,7 +95,7 @@ const RequestExpression = () => {
         {/* false answer one */}
         <label className="form-control w-full mb-2">
           <div className="label">
-            <span className="label-text">First False Answer</span>
+            <span className={isFontSizeLarge ? 'label-text text-xl' : ' label-text text-md'}>First False Answer</span>
           </div>
           <input
             type="text"
@@ -103,7 +108,7 @@ const RequestExpression = () => {
         {/* false answer two */}
         <label className="form-control w-full mb-2">
           <div className="label">
-            <span className="label-text">Second False Answer</span>
+            <span className={isFontSizeLarge ? 'label-text text-xl' : ' label-text text-md'}>Second False Answer</span>
           </div>
           <input
             type="text"

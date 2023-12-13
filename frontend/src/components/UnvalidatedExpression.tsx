@@ -1,26 +1,25 @@
 import { ExpressionType } from "../types/types";
 
-type Props = {
+interface UnvalidatedExpressionProps {
   handleDelete: (id: number) => void;
   handleValidate: (id: number) => void;
   expression: ExpressionType;
+  isFontSizeLarge: boolean;
 };
 
-
-
-
-const UnvalidatedExpression: React.FC<Props> = ({
+const UnvalidatedExpression: React.FC<UnvalidatedExpressionProps> = ({
   handleDelete,
   handleValidate,
   expression,
+  isFontSizeLarge
 }) => {
   return (
     <div className="flex">
       <div className="flex-1">
-        <p className="text-xl">{expression.expression}</p>
-        <p className="text-sm">Correct Answer: {expression.rightAnswer}</p>
-        <p className="text-sm">False Answer 1: {expression.falseAnswerOne}</p>
-        <p className="text-sm">False Answer 2: {expression.falseAnswerTwo}</p>
+        <p className= {isFontSizeLarge ? 'text-4xl' : 'text-2xl'}>{expression.expression}</p>
+        <p className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>Correct Answer: {expression.rightAnswer}</p>
+        <p className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>False Answer 1: {expression.falseAnswerOne}</p>
+        <p className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>False Answer 2: {expression.falseAnswerTwo}</p>
       </div>
       <div className="flex-1">
         <button

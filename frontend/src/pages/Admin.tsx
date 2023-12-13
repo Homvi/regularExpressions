@@ -4,7 +4,12 @@ import { useNavigate } from "react-router-dom";
 import UnvalidatedExpression from "../components/UnvalidatedExpression";
 import { ExpressionType } from "../types/types";
 
-const Admin = () => {
+
+interface AdminProps {
+  isFontSizeLarge: boolean;
+}
+
+const Admin: React.FC<AdminProps> = ({isFontSizeLarge }) => {
   /*  const expressionsData = [
     {
       id: 1,
@@ -163,6 +168,7 @@ const Admin = () => {
             handleValidate={handleValidateExpression}
             expression={expression}
             key={expression.id}
+            isFontSizeLarge = {isFontSizeLarge}
           />
         ))}
     </div>
