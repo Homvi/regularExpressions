@@ -67,34 +67,34 @@ public class UserService {
 	}
 	
 	public ResponseEntity<?> userLogin(User user) {
-		List<User> userList = userRepository.findAll();
-		Optional<User> emailUserExists = userList.stream().filter(userRepositoryItem -> userRepositoryItem.getEmail().equals(user.getEmail())).findFirst();
-//		Optional<User> usernameExists = userList.stream().filter(userRepositoryItem -> userRepositoryItem.getUsername().equals(user.getUsername())).findFirst();
-		
-		if(emailUserExists.isPresent()){
-			if(checkPassword(user.getPassword(), emailUserExists.get().getPassword())) {
-				if(emailUserExists.get().getIsAdmin() == 1) {
-					String hash = generateHash();
-					Admin_hash admin_hash = new Admin_hash(hash, getExpiration());
-					adminRepository.save(admin_hash);
-					
-					LoginResponse loginResponse = new LoginResponse(emailUserExists.get().getId(), emailUserExists.get().getFirstName(),
-							emailUserExists.get().getSurname(), emailUserExists.get().getUsername(), hash);
-					return ResponseEntity.ok(loginResponse);
-				} else {
-					LoginResponse loginResponse = new LoginResponse(user.getId(), user.getFirstName(),
-							user.getSurname(), user.getUsername(), null);
-					return ResponseEntity.ok(loginResponse);
-				}
-				
-			} else {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The password is incorrect.");
-			}
-		}
-		else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The username " + user.getUsername() + " doesn't exist.");
-		}
-	}
+        List<User> userList = userRepository.findAll();
+        Optional<User> emailUserExists = userList.stream().filter(userRepositoryItem -> userRepositoryItem.getEmail().equals(user.getEmail())).findFirst();
+//        Optional<User> usernameExists = userList.stream().filter(userRepositoryItem -> userRepositoryItem.getUsername().equals(user.getUsername())).findFirst();
+
+        if(emailUserExists.isPresent()){
+            if(checkPassword(user.getPassword(), emailUserExists.get().getPassword())) {
+                LoginResponse loginResponse = new LoginResponse();
+                if(emailUserExists.get().getIsAdmin() == 1) {
+                    String hash = generateHash();
+                    Admin_hash admin_hash = new Admin_hash(hash, getExpiration());
+                    adminRepository.save(admin_hash);
+
+                    loginResponse = new LoginResponse(emailUserExists.get().getId(), emailUserExists.get().getFirstName(),
+                            emailUserExists.get().getSurname(), emailUserExists.get().getUsername(), hash);
+                } else if (emailUserExists.get().getIsAdmin() == 0) {
+                    loginResponse = new LoginResponse(emailUserExists.get().getId(), emailUserExists.get().getFirstName(),
+                    		emailUserExists.get().getSurname(), emailUserExists.get().getUsername(), null);
+                }
+                return ResponseEntity.ok(loginResponse);
+
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The password is incorrect.");
+            }
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The username " + user.getUsername() + " doesn't exist.");
+        }
+    }
 	
 	public static Long getExpiration() {
 		Instant now = Instant.now();
