@@ -6,12 +6,11 @@ import Score from "../components/Score";
 
 
 interface EnglishExpressionsProps {
-  changeFontSize: (isLarge: boolean) => void;
   isFontSizeLarge: boolean;
 }
 
 
-const EnglishExpressions: React.FC<EnglishExpressionsProps> = ({ changeFontSize, isFontSizeLarge }) => {
+const EnglishExpressions: React.FC<EnglishExpressionsProps> = ({isFontSizeLarge }) => {
   const [loading, setLoading] = useState(true);
   const [isGameFinished, setIsGameFinished] = useState(false);
 
