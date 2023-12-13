@@ -12,6 +12,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge }) => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.setItem("hash", "");
     setLoggedInUser({});
@@ -27,6 +28,12 @@ const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge }) => {
       </div>
       <div className="flex-none">
       <ul className={`menu menu-horizontal px-1 ${isFontSizeLarge ? 'text-xl' : ''}`}>
+
+      {loggedInUser.firstName && (
+            <li>
+              <Link to="/requestExpression">Request expression</Link>
+            </li>
+          )}
       <li>
       <details>
       <summary>
@@ -74,7 +81,7 @@ const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge }) => {
             </li>
           )}
           {loggedInUser.firstName && (
-            <li onClick={handleLogout}>
+            <li  onClick={handleLogout}>
               <a href="#">Log out</a>
             </li>
           )}

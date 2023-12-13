@@ -25,7 +25,7 @@ const changeFontSize = () => {
         <Navbar changeFontSize={changeFontSize} isFontSizeLarge={isFontSizeLarge}/>
       </div>
       <div className="block md:hidden">
-        <MobileNavbar />
+        <MobileNavbar changeFontSize={changeFontSize} isFontSizeLarge={isFontSizeLarge}/>
       </div>
       <Routes>
         <Route path="/" element={<Home isFontSizeLarge={isFontSizeLarge}/>} />

@@ -36,7 +36,7 @@ const Login: React.FC<LoginProps> = ({isFontSizeLarge}) => {
         userId: response.data.id,
         userName: response.data.username,
       });
-      if (response.data.hash) {
+      if (response.data.hash != null) {
         localStorage.setItem("hash", response.data.hash);
       }
       if (response.data.hash === null) {

@@ -2,7 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import { useContext } from "react";
 
-const MobileNavbar = () => {
+interface MobileNavbarProps {
+  changeFontSize: (isLarge: boolean) => void;
+  isFontSizeLarge: boolean;
+}
+
+const MobileNavbar: React.FC<MobileNavbarProps> = ({ changeFontSize, isFontSizeLarge }) => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -48,11 +53,41 @@ const MobileNavbar = () => {
             )}
             <li>
               {" "}
-              <a href="#">Change language</a>
+              <details>
+              <summary>
+                Change language
+              </summary>
+                <ul className="flex">
+                  <div className="form-control">
+                    <label className="label cursor-pointer">
+                      <ul>
+                        <li><button className="btn mb-2">Español</button></li>
+                        <li><button className="btn">English</button></li>
+                      </ul>
+                    </label>
+                  </div>
+                </ul>
+              </details>
             </li>
             <li>
               {" "}
-              <a href="#">Accessibility</a>
+              <details>
+      <summary>
+        Accesibility
+      </summary>
+        <ul className="flex">
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <span className="label-text">Large font size</span> 
+              <input
+                type="checkbox" className="toggle ml-3" 
+                onChange={() => changeFontSize(!isFontSizeLarge)} // Pass the negation of current value
+                checked={isFontSizeLarge}
+              />
+            </label>
+          </div>
+        </ul>
+      </details>
             </li>
           </ul>
         </div>
