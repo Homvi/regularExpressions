@@ -28,7 +28,21 @@ const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge }) => {
       <div className="flex-none">
       <ul className={`menu menu-horizontal px-1 ${isFontSizeLarge ? 'text-xl' : ''}`}>
       <li>
-          <a href="#">Change language</a>
+      <details>
+      <summary>
+        Change language
+      </summary>
+        <ul className="flex">
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <ul>
+                <li><button className="btn mb-2">Español</button></li>
+                <li><button className="btn">English</button></li>
+              </ul>
+            </label>
+          </div>
+        </ul>
+      </details>
       </li>
       <li>
       <details>
