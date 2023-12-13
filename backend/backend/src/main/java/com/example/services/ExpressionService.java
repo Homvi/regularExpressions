@@ -59,23 +59,27 @@ public class ExpressionService {
     }
 	
 	public ResponseEntity<?> getInvalidatedExpressions(Admin_hash admin_hash) {
-		Admin_hash matchingHash = getByHash(admin_hash);
-		if(matchingHash != null) {
-			Instant now = Instant.now();
-			Long now_seconds = now.getEpochSecond();
-			if(matchingHash.getExpiration() >= now_seconds) {
-				List<Expression> expressions = expressionRepository.findAll().stream()
-						.filter(expression -> expression.getValidated() == 0L)
-						.collect(Collectors.toList());
-				return ResponseEntity.ok(expressions);
-			} else {
-				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Expiration date already out");
-			}
-			
-		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Hash not found");
-		}
+	    Admin_hash matchingHash = getByHash(admin_hash);
+	    if (matchingHash != null) {
+	        Instant now = Instant.now();
+	        Long now_seconds = now.getEpochSecond();
+	        if (matchingHash.getExpiration() >= now_seconds) {
+	            List<Expression> expressions = expressionRepository.findAll().stream()
+	                    .filter(expression -> {
+	                        Long validated = expression.getValidated();
+	                        return validated != null && validated.equals(0L);
+	                    })
+	                    .collect(Collectors.toList());
+	            return ResponseEntity.ok(expressions);
+	        } else {
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Expiration date already out");
+	        }
+
+	    } else {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Hash not found");
+	    }
 	}
+
 	
 	public static Admin_hash getByHash(Admin_hash admin_hash) {
 		Optional<Admin_hash> matchingHash = adminRepository.findAll().stream()
