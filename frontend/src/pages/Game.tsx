@@ -17,9 +17,8 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
   const [isWrongAnswerTwoChosen, setIsWrongAnswerTwoChosen] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
   const [showAnswerOne, setShowAnswerOne] = useState(false);
-const [showAnswerTwo, setShowAnswerTwo] = useState(false);
-const [showAnswerThree, setShowAnswerThree] = useState(false);
-
+  const [showAnswerTwo, setShowAnswerTwo] = useState(false);
+  const [showAnswerThree, setShowAnswerThree] = useState(false);
 
   const location = useLocation();
 
@@ -46,17 +45,24 @@ const [showAnswerThree, setShowAnswerThree] = useState(false);
       setLoading(false);
     }
   };
+  const getDelayForAnswer = (answerIndex) => {
+    const orderIndex = randomNumbersRef.current.indexOf(answerIndex);
+    switch (orderIndex) {
+      case 0: return 500; // First to appear
+      case 1: return 1000; // Second to appear
+      case 2: return 1500; // Third to appear
+      default: return 0;
+    }
+  };
 
   useEffect(() => {
-    // Reset visibility for answers
     setShowAnswerOne(false);
     setShowAnswerTwo(false);
     setShowAnswerThree(false);
   
-    // Sequentially show answers with a delay
-    const timer1 = setTimeout(() => setShowAnswerOne(true), 500); // Delay for first answer
-    const timer2 = setTimeout(() => setShowAnswerTwo(true), 1000); // Delay for second answer
-    const timer3 = setTimeout(() => setShowAnswerThree(true), 1500); // Delay for third answer
+    const timer1 = setTimeout(() => setShowAnswerOne(true), getDelayForAnswer(0));
+    const timer2 = setTimeout(() => setShowAnswerTwo(true), getDelayForAnswer(1));
+    const timer3 = setTimeout(() => setShowAnswerThree(true), getDelayForAnswer(2));
   
     return () => {
       clearTimeout(timer1);
@@ -64,7 +70,6 @@ const [showAnswerThree, setShowAnswerThree] = useState(false);
       clearTimeout(timer3);
     };
   }, [activeExpressionIndex]);
-  
 
   const activeExpression = expressions[activeExpressionIndex];
   const getRandomNumbers = () => {
@@ -131,55 +136,49 @@ const [showAnswerThree, setShowAnswerThree] = useState(false);
   };
 
   return (
-    <div className=" h-screen flex justify-start md:m-9 items-center flex-col gap-3 font-nova">
+    <div className="h-screen flex justify-start md:m-9 items-center flex-col gap-3 font-nova">
       {loading && <p>Loading...</p>}
       {loading && <span className="loading loading-infinity loading-lg"></span>}
       {!loading && !isGameFinished && (
-        /*    <Expression
-          key={activeExpressionIndex}
-          expression={activeExpression}
-          handleChoice={handleChoice}
-          isFontSizeLarge={isFontSizeLarge}
-        /> */
         <div
-        id="expressionsContainer" className={`flex flex-col text-center justify-center w-full md:max-w-xl items-center gap-3 transition-all duration-300 ${fadeIn ? 'opacity-0 translate-x-full' : 'opacity-100 translate-x-0'}`}
+          id="expressionsContainer"
+          className={`flex flex-col text-center justify-center w-full md:max-w-xl items-center gap-3 transition-all duration-300 ${
+            fadeIn ? "opacity-0 translate-x-full" : "opacity-100 translate-x-0"
+          }`}
         >
-          <h2 className={isFontSizeLarge ? "text-4xl" : "text-2xl"}>
+          <h2 className={isFontSizeLarge ? "text-4xl my-6" : "text-2xl my-6"}>
             {activeExpression.expression}
           </h2>
           <div
-            style={{ order: randomNumbersRef.current[0] }}
-            onClick={() => handleChoice(activeExpression.rightAnswer)}
-            className={`border-2 min-w-[200px]  md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer ${
-              isRightAnswerChosen && "border-2 border-green-500"
-            }`}
-          >
-            <p className={isFontSizeLarge ? "text-xl" : "text-md"}>
-              {activeExpression.rightAnswer}
-            </p>
-          </div>
-          <div
-            style={{ order: randomNumbersRef.current[1] }}
-            className={`border-2 min-w-[200px]  md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer ${
-              isWrongAnswerOneChosen && "border-2 border-red-500"
-            }`}
-            onClick={() => handleChoice(activeExpression.falseAnswerOne)}
-          >
-            <p className={isFontSizeLarge ? "text-xl" : "text-md"}>
-              {activeExpression.falseAnswerOne}
-            </p>
-          </div>
-          <div
-            style={{ order: randomNumbersRef.current[1] }}
-            className={`border-2 min-w-[200px]  md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer ${
-              isWrongAnswerTwoChosen && "border-2 border-red-500"
-            }`}
-            onClick={() => handleChoice(activeExpression.falseAnswerTwo)}
-          >
-            <p className={isFontSizeLarge ? "text-xl" : "text-md"}>
-              {activeExpression.falseAnswerTwo}
-            </p>
-          </div>
+  style={{ order: randomNumbersRef.current[0] }}
+  onClick={() => handleChoice(activeExpression.rightAnswer)}
+  className={`border-2 min-w-[200px] md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer transition-all duration-100 ${showAnswerOne ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'} ${isRightAnswerChosen ? "border-green-500" : "border-gray-200"}`}
+>
+  <p className={isFontSizeLarge ? "text-xl" : "text-md"}>
+    {activeExpression.rightAnswer}
+  </p>
+</div>
+
+<div
+  style={{ order: randomNumbersRef.current[1] }}
+  onClick={() => handleChoice(activeExpression.falseAnswerOne)}
+  className={`border-2 min-w-[200px] md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer transition-all duration-100 ${showAnswerTwo ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'} ${isWrongAnswerOneChosen ? "border-red-500" : "border-gray-200"}`}
+>
+  <p className={isFontSizeLarge ? "text-xl" : "text-md"}>
+    {activeExpression.falseAnswerOne}
+  </p>
+</div>
+
+<div
+  style={{ order: randomNumbersRef.current[2] }}
+  onClick={() => handleChoice(activeExpression.falseAnswerTwo)}
+  className={`border-2 min-w-[200px] md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer transition-all duration-100 ${showAnswerThree ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'} ${isWrongAnswerTwoChosen ? "border-red-500" : "border-gray-200"}`}
+>
+  <p className={isFontSizeLarge ? "text-xl" : "text-md"}>
+    {activeExpression.falseAnswerTwo}
+  </p>
+</div>
+
         </div>
       )}
       {isGameFinished && <Score score={score} resetGame={resetGame} />}
