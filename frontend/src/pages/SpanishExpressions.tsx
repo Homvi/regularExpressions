@@ -131,7 +131,7 @@ const SpanishExpressions: React.FC<SpanishExpressionsProps> = ({isFontSizeLarge 
   };
 
   return (
-    <div className=" h-screen flex justify-center items-center flex-col gap-3">
+    <div className=" h-screen flex justify-center items-center flex-col gap-3 font-nova">
       {loading && <p>Loading...</p>}
       {loading && <span className="loading loading-infinity loading-lg"></span>}
       {!loading && !isGameFinished && (

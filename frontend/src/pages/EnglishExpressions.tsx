@@ -133,7 +133,7 @@ const EnglishExpressions: React.FC<EnglishExpressionsProps> = ({isFontSizeLarge 
   };
 
   return (
-    <div className=" h-screen flex justify-center items-center flex-col gap-3">
+    <div className="font-nova h-screen flex justify-center items-center flex-col gap-3">
       {loading && <p>Loading...</p>}
       {loading && <span className="loading loading-infinity loading-lg"></span>}
       {!loading && !isGameFinished && (

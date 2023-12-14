@@ -51,7 +51,7 @@ const RequestExpression: React.FC<RequestExpressionProps> = ({ isFontSizeLarge }
   };
 
   return (
-    <div className="flex flex-col justify-center w-full items-center">
+    <div className="flex flex-col justify-center w-full items-center font-nova">
       <ToastContainer />
       <h1 className={`text-center my-3 ${isFontSizeLarge ? 'text-4xl' : 'text-3xl'}`}>Request new expression</h1>
       <form
