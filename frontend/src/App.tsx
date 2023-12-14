@@ -10,6 +10,7 @@ import EnglishExpressions from "./pages/EnglishExpressions";
 import Admin from "./pages/Admin";
 import RequestExpression from "./pages/RequestExpression";
 import { useState } from "react";
+import ChooseLanguage from "./pages/ChooseLanguage";
 
 function App() {
 const [isFontSizeLarge, setIsFontSizeLarge] = useState(false)
@@ -31,6 +32,7 @@ const changeFontSize = () => {
         <Route path="/" element={<Home isFontSizeLarge={isFontSizeLarge}/>} />
         <Route path="/register" element={<Register  isFontSizeLarge={isFontSizeLarge}/>} />
         <Route path="/login" element={<Login isFontSizeLarge={isFontSizeLarge}/>} />
+        <Route path="/chooseLanguage" element={<ChooseLanguage isFontSizeLarge={isFontSizeLarge} />} />
         <Route path="/spanishExpressions" element={<SpanishExpressions isFontSizeLarge={isFontSizeLarge}/>} />
         <Route path="/englishExpressions" element={<EnglishExpressions isFontSizeLarge={isFontSizeLarge}/>} />
         <Route path="/requestExpression" element={<RequestExpression isFontSizeLarge={isFontSizeLarge}/>} />
