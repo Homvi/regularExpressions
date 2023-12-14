@@ -15,6 +15,11 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
   const [isRightAnswerChosen, setIsRightAnswerChosen] = useState(false);
   const [isWrongAnswerOneChosen, setIsWrongAnswerOneChosen] = useState(false);
   const [isWrongAnswerTwoChosen, setIsWrongAnswerTwoChosen] = useState(false);
+  const [fadeIn, setFadeIn] = useState(false);
+  const [showAnswerOne, setShowAnswerOne] = useState(false);
+const [showAnswerTwo, setShowAnswerTwo] = useState(false);
+const [showAnswerThree, setShowAnswerThree] = useState(false);
+
 
   const location = useLocation();
 
@@ -42,6 +47,25 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
     }
   };
 
+  useEffect(() => {
+    // Reset visibility for answers
+    setShowAnswerOne(false);
+    setShowAnswerTwo(false);
+    setShowAnswerThree(false);
+  
+    // Sequentially show answers with a delay
+    const timer1 = setTimeout(() => setShowAnswerOne(true), 500); // Delay for first answer
+    const timer2 = setTimeout(() => setShowAnswerTwo(true), 1000); // Delay for second answer
+    const timer3 = setTimeout(() => setShowAnswerThree(true), 1500); // Delay for third answer
+  
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
+  }, [activeExpressionIndex]);
+  
+
   const activeExpression = expressions[activeExpressionIndex];
   const getRandomNumbers = () => {
     const randomNumbers: number[] = [];
@@ -67,12 +91,12 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
     setActiveExpressionIndex(0);
   };
 
-  const executeAnimation = () => {
-    console.log("executeAnimation");
-  };
-
   useEffect(() => {
-    executeAnimation();
+    setFadeIn(true);
+    const timer = setTimeout(() => {
+      setFadeIn(false);
+    }, 500);
+    return () => clearTimeout(timer);
   }, [activeExpressionIndex]);
 
   const handleChoice = (choice: string) => {
@@ -118,9 +142,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
           isFontSizeLarge={isFontSizeLarge}
         /> */
         <div
-          className={
-            "flex flex-col justify-center w-full md:max-w-xl items-center gap-3 transition-all duration-300 opacity-100"
-          }
+        id="expressionsContainer" className={`flex flex-col text-center justify-center w-full md:max-w-xl items-center gap-3 transition-all duration-300 ${fadeIn ? 'opacity-0 translate-x-full' : 'opacity-100 translate-x-0'}`}
         >
           <h2 className={isFontSizeLarge ? "text-4xl" : "text-2xl"}>
             {activeExpression.expression}
