@@ -38,7 +38,7 @@ const Home: React.FC<HomeProps> = ({ isFontSizeLarge }) => {
               Get started
             </Link>
             <Link
-              to="/chooseLanguage"
+              to="/login"
               className="bg-[#052138] shadow-md text-white py-2 transition-all duration-300 hover:scale-105 hover:shadow-xl rounded-lg px-1"
             >
               I already have an account
