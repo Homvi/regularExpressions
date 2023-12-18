@@ -50,7 +50,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
       setLoading(false);
     }
   };
-  const getDelayForAnswer = (answerIndex:number) => {
+  const getDelayForAnswer = (answerIndex: number) => {
     const orderIndex = randomNumbersRef.current.indexOf(answerIndex);
     switch (orderIndex) {
       case 0:
@@ -161,9 +161,6 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
       {loading && <span className="loading loading-infinity loading-lg"></span>}
       {!loading && !isGameFinished && (
         <>
-          <Link className="absolute left-10 top-0" to={"/"}>
-            X
-          </Link>
           <ProgressBar progress={progress} />
           <div
             id="expressionsContainer"

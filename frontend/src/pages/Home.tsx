@@ -23,18 +23,18 @@ const Home: React.FC<HomeProps> = ({ isFontSizeLarge, language }) => {
       <div
         className={
           isFontSizeLarge
-            ? " px-2 text-3xl min-h-screen flex-col md:flex-row items-center font-nova"
+            ? " px-2 text-3xl min-h-screen flex-col items-center font-nova "
             : " px-2 text-2xl min-h-screen flex flex-col md:flex-row items-center font-nova"
         }
       >
-        <div className="flex my-11 md:w-[40%] justify-center h-full">
+        <div className={ isFontSizeLarge ? "flex my-11 justify-center h-full" : "flex my-11 md:w-[40%] justify-center h-full"}>
           {View}
         </div>
         <div className="flex flex-col items-center">
           <h2 className="text-center w-full max-w-md">
             {content[language].homePage.title}
           </h2>
-          <div className="flex  my-9 flex-col gap-3 w-full md:w-[70%] text-center whitespace-nowrap">
+          <div className="flex  my-9 flex-col gap-3 w-full md:w-[70%] text-center ">
             <Link
               to="/chooseLanguage"
               className="bg-[#60AC90] shadow-md transition-all duration-300 hover:scale-105 text-white py-2 hover:shadow-xl w-full rounded-lg px-1"
