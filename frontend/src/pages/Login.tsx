@@ -88,7 +88,7 @@ const Login: React.FC<LoginProps> = ({isFontSizeLarge, language}) => {
           />
         </label>
         <button type="submit" className="btn btn-primary my-3">
-        {content[language].login.pass}
+        {content[language].login.login}
         </button>
       </form>
     </div>
