@@ -50,7 +50,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
       setLoading(false);
     }
   };
-  const getDelayForAnswer = (answerIndex) => {
+  const getDelayForAnswer = (answerIndex:number) => {
     const orderIndex = randomNumbersRef.current.indexOf(answerIndex);
     switch (orderIndex) {
       case 0:
