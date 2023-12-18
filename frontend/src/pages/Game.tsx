@@ -25,6 +25,10 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
 
   const expressionsType = location.pathname.split("/")[1];
 
+  const rightAnswerRef = useRef<HTMLDivElement>(null);
+  const falseAnswerOneRef = useRef<HTMLDivElement>(null);
+  const falseAnswerTwoRef = useRef<HTMLDivElement>(null);
+
   let url = "";
   if (expressionsType === "spanishExpressions") {
     url = "http://localhost:8080/getSpanishExpressions";
@@ -157,10 +161,10 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
       {loading && <span className="loading loading-infinity loading-lg"></span>}
       {!loading && !isGameFinished && (
         <>
-            <Link className="absolute left-6 top-0" to={"/"}>
-              X
-            </Link>
-            <ProgressBar progress={progress} />
+          <Link className="absolute left-10 top-0" to={"/"}>
+            X
+          </Link>
+          <ProgressBar progress={progress} />
           <div
             id="expressionsContainer"
             className={`flex flex-col text-center justify-center w-full md:max-w-xl items-center gap-3 transition-all duration-300 ${
@@ -173,7 +177,9 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
               {activeExpression.expression}
             </h2>
             <div
+              ref={rightAnswerRef}
               style={{ order: randomNumbersRef.current[0] }}
+              tabIndex={randomNumbersRef.current[0] + 5}
               onClick={() => handleChoice(activeExpression.rightAnswer)}
               className={`border-2 min-w-[200px] md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer transition-all duration-100 ${
                 showAnswerOne
@@ -189,7 +195,9 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
             </div>
 
             <div
+              ref={falseAnswerOneRef}
               style={{ order: randomNumbersRef.current[1] }}
+              tabIndex={randomNumbersRef.current[1] + 5}
               onClick={() => handleChoice(activeExpression.falseAnswerOne)}
               className={`border-2 min-w-[200px] md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer transition-all duration-100 ${
                 showAnswerTwo
@@ -205,7 +213,9 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
             </div>
 
             <div
+              ref={falseAnswerTwoRef}
               style={{ order: randomNumbersRef.current[2] }}
+              tabIndex={randomNumbersRef.current[2] + 5}
               onClick={() => handleChoice(activeExpression.falseAnswerTwo)}
               className={`border-2 min-w-[200px] md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer transition-all duration-100 ${
                 showAnswerThree
