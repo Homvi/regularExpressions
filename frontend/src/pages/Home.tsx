@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 import { useLottie } from "lottie-react";
 import mundo from "../assets/animations/mundo.json";
+import {content} from "../LanguageContent.js";
 
 interface HomeProps {
   isFontSizeLarge: boolean;
+  language: string;
 }
 
-const Home: React.FC<HomeProps> = ({ isFontSizeLarge }) => {
+console.log(content);
+
+const Home: React.FC<HomeProps> = ({ isFontSizeLarge, language }) => {
   const options = {
     animationData: mundo,
     loop: true,
@@ -28,20 +32,20 @@ const Home: React.FC<HomeProps> = ({ isFontSizeLarge }) => {
         </div>
         <div className="flex flex-col items-center">
           <h2 className="text-center w-full max-w-md">
-            The free, fun, and effective way to learn a expressions!
+            {content[language].homePage.title}
           </h2>
           <div className="flex  my-9 flex-col gap-3 w-full md:w-[70%] text-center whitespace-nowrap">
             <Link
               to="/chooseLanguage"
               className="bg-[#60AC90] shadow-md transition-all duration-300 hover:scale-105 text-white py-2 hover:shadow-xl w-full rounded-lg px-1"
             >
-              Get started
+              {content[language].homePage.getStartedButton}
             </Link>
             <Link
               to="/login"
               className="bg-[#052138] shadow-md text-white py-2 transition-all duration-300 hover:scale-105 hover:shadow-xl rounded-lg px-1"
             >
-              I already have an account
+              {content[language].homePage.login}
             </Link>
           </div>
         </div>

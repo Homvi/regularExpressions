@@ -7,9 +7,10 @@ import logo from "../assets/exprilliant-with-text.png";
 interface NavbarProps {
   changeFontSize: (isLarge: boolean) => void;
   isFontSizeLarge: boolean;
+  changeLanguage: (language: string) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge }) => {
+const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge, changeLanguage }) => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -49,11 +50,14 @@ const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge }) => {
                 <div className="form-control">
                   <label className="label cursor-pointer">
                     <ul>
-                      <li>
-                        <button className="btn mb-2">Español</button>
+                      <li onClick={() => changeLanguage("es")}>
+                        <button className="btn mb-2"
+                         // Pass the negation of current value
+                        >Español</button>
                       </li>
-                      <li>
-                        <button className="btn">English</button>
+                      <li onClick={() => changeLanguage("en")}>
+                        <button className="btn"
+                        >English</button>
                       </li>
                     </ul>
                   </label>

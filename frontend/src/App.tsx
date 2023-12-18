@@ -18,12 +18,20 @@ function App() {
     setIsFontSizeLarge(!isFontSizeLarge);
   };
 
+  const [language, setLanguage] = useState("en");
+
+  const changeLanguage = (language:string) => {
+    setLanguage(language);
+  };
+
   return (
     <>
       <div className="hidden md:block">
         <Navbar
           changeFontSize={changeFontSize}
           isFontSizeLarge={isFontSizeLarge}
+
+          changeLanguage={changeLanguage}
         />
       </div>
       <div className="block md:hidden">
@@ -33,7 +41,7 @@ function App() {
         />
       </div>
       <Routes>
-        <Route path="/" element={<Home isFontSizeLarge={isFontSizeLarge} />} />
+        <Route path="/" element={<Home isFontSizeLarge={isFontSizeLarge} language={language}/>} />
         <Route
           path="/register"
           element={<Register isFontSizeLarge={isFontSizeLarge} />}
