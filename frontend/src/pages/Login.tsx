@@ -4,12 +4,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../UserContext";
 import { useNavigate } from "react-router-dom";
+import {content} from "../LanguageContent.js";
 
 interface LoginProps {
   isFontSizeLarge: boolean;
+  language:string;
 }
 
-const Login: React.FC<LoginProps> = ({isFontSizeLarge}) => {
+const Login: React.FC<LoginProps> = ({isFontSizeLarge, language}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [, setLoggedInUser] = useContext(UserContext);
@@ -25,7 +27,7 @@ const Login: React.FC<LoginProps> = ({isFontSizeLarge}) => {
 
     try {
       const response = await axios.post("http://localhost:8080/login", user);
-      toast("You have succesfully logged in!");
+      toast(content[language].login.loginOk);
       setEmail("");
       setPassword("");
       console.log("The response data is: ", response.data);
@@ -44,7 +46,7 @@ const Login: React.FC<LoginProps> = ({isFontSizeLarge}) => {
       }
           navigate("/");
     } catch (error) {
-      toast("Oops it didn't work!");
+      toast(content[language].login.loginFail);
       console.log(error);
     }
   };
@@ -52,7 +54,7 @@ const Login: React.FC<LoginProps> = ({isFontSizeLarge}) => {
   return (
     <div className="min-h-screen w-full flex flex-col items-center font-nova">
       <ToastContainer />
-      <h1 className={`text-center my-3 ${isFontSizeLarge ? 'text-4xl' : 'text-3xl'}`}>Log in</h1>
+      <h1 className={`text-center my-3 ${isFontSizeLarge ? 'text-4xl' : 'text-3xl'}`}>{content[language].login.login}</h1>
       {/* form */}
       <form
         onSubmit={handleSubmit}
@@ -61,21 +63,21 @@ const Login: React.FC<LoginProps> = ({isFontSizeLarge}) => {
         {/* email input */}
         <label className="form-control w-full">
           <div className="label">
-            <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Email</span>
+            <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>{content[language].login.email}</span>
           </div>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             required
-            placeholder="email"
+            placeholder="johndoe@gmail.com"
             className="input input-bordered w-full"
           />
         </label>
         {/* password input */}
         <label className="form-control w-full">
           <div className="label">
-          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Password</span>
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>{content[language].login.pass}</span>
           </div>
           <input
             value={password}
@@ -86,7 +88,7 @@ const Login: React.FC<LoginProps> = ({isFontSizeLarge}) => {
           />
         </label>
         <button type="submit" className="btn btn-primary my-3">
-          Log in
+        {content[language].login.pass}
         </button>
       </form>
     </div>
