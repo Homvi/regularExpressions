@@ -24,6 +24,10 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
 
   const expressionsType = location.pathname.split("/")[1];
 
+  const rightAnswerRef = useRef<HTMLDivElement>(null);
+  const falseAnswerOneRef = useRef<HTMLDivElement>(null);
+  const falseAnswerTwoRef = useRef<HTMLDivElement>(null);
+
   let url = "";
   if (expressionsType === "spanishExpressions") {
     url = "http://localhost:8080/getSpanishExpressions";
@@ -150,7 +154,9 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
             {activeExpression.expression}
           </h2>
           <div
+  ref={rightAnswerRef}
   style={{ order: randomNumbersRef.current[0] }}
+  tabIndex={randomNumbersRef.current[0]+5}
   onClick={() => handleChoice(activeExpression.rightAnswer)}
   className={`border-2 min-w-[200px] md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer transition-all duration-100 ${showAnswerOne ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'} ${isRightAnswerChosen ? "border-green-500" : "border-gray-200"}`}
 >
@@ -160,7 +166,9 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
 </div>
 
 <div
+  ref={falseAnswerOneRef}
   style={{ order: randomNumbersRef.current[1] }}
+  tabIndex={randomNumbersRef.current[1]+5}
   onClick={() => handleChoice(activeExpression.falseAnswerOne)}
   className={`border-2 min-w-[200px] md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer transition-all duration-100 ${showAnswerTwo ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'} ${isWrongAnswerOneChosen ? "border-red-500" : "border-gray-200"}`}
 >
@@ -170,7 +178,9 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
 </div>
 
 <div
+  ref={falseAnswerTwoRef}
   style={{ order: randomNumbersRef.current[2] }}
+  tabIndex={randomNumbersRef.current[2]+5}
   onClick={() => handleChoice(activeExpression.falseAnswerTwo)}
   className={`border-2 min-w-[200px] md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer transition-all duration-100 ${showAnswerThree ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'} ${isWrongAnswerTwoChosen ? "border-red-500" : "border-gray-200"}`}
 >
