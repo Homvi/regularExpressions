@@ -3,14 +3,16 @@ import { UserContext } from "../UserContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/exprilliant-with-text.png";
+import {content} from "../LanguageContent.js";
 
 interface NavbarProps {
   changeFontSize: (isLarge: boolean) => void;
   isFontSizeLarge: boolean;
   changeLanguage: (language: string) => void;
+  language:string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge, changeLanguage }) => {
+const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge, changeLanguage, language }) => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -40,12 +42,12 @@ const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge, change
         >
           {loggedInUser.firstName && (
             <li>
-              <Link to="/requestExpression">Request expression</Link>
+              <Link to="/requestExpression">{content[language].navBar.request}</Link>
             </li>
           )}
           <li>
             <details>
-              <summary>Change language</summary>
+              <summary>{content[language].navBar.language}</summary>
               <ul className="flex">
                 <div className="form-control">
                   <label className="label cursor-pointer">
@@ -67,11 +69,11 @@ const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge, change
           </li>
           <li>
             <details>
-              <summary>Accesibility</summary>
+              <summary>{content[language].navBar.accessibility}</summary>
               <ul className="flex">
                 <div className="form-control">
                   <label className="label cursor-pointer">
-                    <span className="label-text">Large font size</span>
+                    <span className="label-text">{content[language].navBar.font}</span>
                     <input
                       type="checkbox"
                       className="toggle ml-3"
@@ -85,17 +87,17 @@ const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge, change
           </li>
           {!loggedInUser.firstName && (
             <li>
-              <Link to="/register">Register</Link>
+              <Link to="/register">{content[language].navBar.register}</Link>
             </li>
           )}
           {!loggedInUser.firstName && (
             <li>
-              <Link to="/login">Log in</Link>
+              <Link to="/login">{content[language].navBar.login}</Link>
             </li>
           )}
           {loggedInUser.firstName && (
             <li onClick={handleLogout}>
-              <a href="#">Log out</a>
+              <a href="#">{content[language].navBar.logout}</a>
             </li>
           )}
         </ul>

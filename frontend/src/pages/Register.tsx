@@ -2,12 +2,14 @@ import axios from "axios";
 import { FormEvent, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {content} from "../LanguageContent.js";
 
 interface RegisterProps {
   isFontSizeLarge: boolean;
+  language: string;
 }
 
-const Register: React.FC<RegisterProps> = ({isFontSizeLarge}) => {
+const Register: React.FC<RegisterProps> = ({isFontSizeLarge,language}) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
@@ -21,12 +23,12 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge}) => {
     e.preventDefault();
 
     if (!isPrivacyCheckboxChecked) {
-      toast.error("Accept privacy!");
+      toast.error(content[language].register.errPrivacy);
       return;
     }
 
     if (password !== passwordAgain) {
-      toast.error("The two password doesn't match");
+      toast.error(content[language].register.errPass);
       return;
     }
 
@@ -46,7 +48,7 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge}) => {
         newUser
       );
       console.log(response);
-      toast("The registration was successfull");
+      toast(content[language].register.registerOk);
       setFirstName("");
       setLastName("");
       setUserName("");
@@ -54,7 +56,7 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge}) => {
       setPassword("");
       setPasswordAgain("");
     } catch (error) {
-      toast.error("Oops it didn't work!");
+      toast.error(content[language].register.registerFail);
       console.log(error);
     }
   };
@@ -62,7 +64,7 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge}) => {
   return (
     <div className="min-h-screen w-full flex flex-col items-center font-nova">
       <ToastContainer />
-      <h1 className={`text-center my-3 ${isFontSizeLarge ? 'text-4xl' : 'text-3xl'}`}>Register</h1>
+      <h1 className={`text-center my-3 ${isFontSizeLarge ? 'text-4xl' : 'text-3xl'}`}>{content[language].register.register}</h1>
       {/* form */}
       <form
         onSubmit={handleSubmit}
@@ -71,63 +73,63 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge}) => {
         {/* firstName input */}
         <label className="form-control w-full">
           <div className="label">
-            <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>First name</span>
+            <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>{content[language].register.name1}</span>
           </div>
           <input
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             type="text"
             required
-            placeholder="First name"
+            placeholder="John"
             className="input input-bordered w-full"
           />
         </label>
         {/* lastName input */}
         <label className="form-control w-full">
           <div className="label">
-          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Last name</span>
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>{content[language].register.name2}</span>
           </div>
           <input
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             type="text"
             required
-            placeholder="Last name"
+            placeholder="Doe"
             className="input input-bordered w-full"
           />
         </label>
         {/* userName input */}
         <label className="form-control w-full">
           <div className="label">
-          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Username</span>
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>{content[language].register.username}</span>
           </div>
           <input
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             type="text"
             required
-            placeholder="username"
+            placeholder="johndoe"
             className="input input-bordered w-full"
           />
         </label>
         {/* email input */}
         <label className="form-control w-full">
           <div className="label">
-          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Email</span>
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>{content[language].register.email}</span>
           </div>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             required
-            placeholder="email"
+            placeholder="johndoe@gmail.com"
             className="input input-bordered w-full"
           />
         </label>
         {/* password input */}
         <label className="form-control w-full">
           <div className="label">
-          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Password</span>
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>{content[language].register.pass1}</span>
           </div>
           <input
             value={password}
@@ -140,7 +142,7 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge}) => {
         {/* passwordAgain input */}
         <label className="form-control w-full">
           <div className="label">
-          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>Password again</span>
+          <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>{content[language].register.pass2}</span>
           </div>
           <input
             value={passwordAgain}
@@ -154,7 +156,7 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge}) => {
         <div className="form-control my-3 ">
           <label className="label cursor-pointer">
           <span className={`label-text ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>
-              I have read an accept the privacy policy
+          {content[language].register.terms}
             </span>
             <input
               type="checkbox"
@@ -164,10 +166,10 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge}) => {
               checked={isPrivacyCheckboxChecked}
               className="checkbox"
             />
-          </label>
+          </label>  
         </div>
         <button type="submit" className={`btn btn-primary ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>
-          Register
+        {content[language].register.register}
         </button>
       </form>
     </div>

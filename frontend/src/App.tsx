@@ -30,8 +30,8 @@ function App() {
         <Navbar
           changeFontSize={changeFontSize}
           isFontSizeLarge={isFontSizeLarge}
-
           changeLanguage={changeLanguage}
+          language={language}
         />
       </div>
       <div className="block md:hidden">
@@ -44,15 +44,15 @@ function App() {
         <Route path="/" element={<Home isFontSizeLarge={isFontSizeLarge} language={language}/>} />
         <Route
           path="/register"
-          element={<Register isFontSizeLarge={isFontSizeLarge} />}
+          element={<Register isFontSizeLarge={isFontSizeLarge} language={language}/>}
         />
         <Route
           path="/login"
-          element={<Login isFontSizeLarge={isFontSizeLarge} />}
+          element={<Login isFontSizeLarge={isFontSizeLarge} language={language} />}
         />
         <Route
           path="/chooseLanguage"
-          element={<ChooseLanguage isFontSizeLarge={isFontSizeLarge} />}
+          element={<ChooseLanguage isFontSizeLarge={isFontSizeLarge} language={language}/>}
         />
         <Route
           path="/spanishExpressions"
@@ -64,7 +64,7 @@ function App() {
         />
         <Route
           path="/requestExpression"
-          element={<RequestExpression isFontSizeLarge={isFontSizeLarge} />}
+          element={<RequestExpression isFontSizeLarge={isFontSizeLarge} language={language} />}
         />
         <Route
           path="/admin"
