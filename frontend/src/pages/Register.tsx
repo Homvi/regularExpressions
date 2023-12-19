@@ -2,6 +2,7 @@ import axios from "axios";
 import { FormEvent, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 import {content} from "../LanguageContent.js";
 
 interface RegisterProps {
@@ -18,6 +19,7 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge,language}) => {
   const [passwordAgain, setPasswordAgain] = useState("");
   const [isPrivacyCheckboxChecked, setIsPrivacyCheckboxChecked] =
     useState(false);
+    const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,6 +51,7 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge,language}) => {
       );
       console.log(response);
       toast(content[language].register.registerOk);
+      navigate("/");
       setFirstName("");
       setLastName("");
       setUserName("");

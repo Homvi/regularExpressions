@@ -53,12 +53,12 @@ const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge, change
                   <label className="label cursor-pointer">
                     <ul>
                       <li onClick={() => changeLanguage("es")}>
-                        <button className="btn mb-2"
+                        <button className="btn mb-2 z-50"
                          // Pass the negation of current value
                         >Español</button>
                       </li>
                       <li onClick={() => changeLanguage("en")}>
-                        <button className="btn"
+                        <button className="btn z-50"
                         >English</button>
                       </li>
                     </ul>

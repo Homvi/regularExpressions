@@ -5,12 +5,14 @@ import { ExpressionType } from "../types/types";
 import Score from "../components/Score";
 import { Link, useLocation } from "react-router-dom";
 import ProgressBar from "../components/ProgressBar";
+import {content} from "../LanguageContent.js";
 
 interface GameExpressionsProps {
   isFontSizeLarge: boolean;
+  language:string;
 }
 
-const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
+const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge, language }) => {
   const [loading, setLoading] = useState(true);
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [isRightAnswerChosen, setIsRightAnswerChosen] = useState(false);
@@ -229,7 +231,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
           </div>
         </>
       )}
-      {isGameFinished && <Score score={score} resetGame={resetGame} />}
+      {isGameFinished && <Score score={score} resetGame={resetGame} language={language} />}
     </div>
   );
 };

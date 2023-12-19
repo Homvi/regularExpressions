@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UnvalidatedExpression from "../components/UnvalidatedExpression";
 import { ExpressionType } from "../types/types";
+import {content} from "../LanguageContent.js";
 
 
 interface AdminProps {
   isFontSizeLarge: boolean;
+  language: string;
 }
 
-const Admin: React.FC<AdminProps> = ({isFontSizeLarge }) => {
+const Admin: React.FC<AdminProps> = ({isFontSizeLarge, language }) => {
   /*  const expressionsData = [
     {
       id: 1,
@@ -161,6 +163,17 @@ const Admin: React.FC<AdminProps> = ({isFontSizeLarge }) => {
   return (
     <div>
       {!requestedExpressions && <p>Loading...</p>}
+      <div className="overflow-x-auto">
+      <table className="table my-10">
+    <thead>
+      <tr>
+        <th className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>{content[language].request.expression}</th>
+        <th className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>{content[language].request.right}</th>
+        <th className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>{content[language].request.false1}</th>
+        <th className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>{content[language].request.false1}</th>
+      </tr>
+    </thead>
+    <tbody>
       {requestedExpressions &&
         requestedExpressions.map((expression) => (
           <UnvalidatedExpression
@@ -171,6 +184,9 @@ const Admin: React.FC<AdminProps> = ({isFontSizeLarge }) => {
             isFontSizeLarge = {isFontSizeLarge}
           />
         ))}
+    </tbody>
+  </table>
+  </div>
     </div>
   );
 };

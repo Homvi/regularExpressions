@@ -14,6 +14,29 @@ const UnvalidatedExpression: React.FC<UnvalidatedExpressionProps> = ({
   isFontSizeLarge
 }) => {
   return (
+      <tr>
+        <td className= {isFontSizeLarge ? 'text-xl font-bold' : 'text-sm font-bold'}>{expression.expression}</td>
+        <td className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>{expression.rightAnswer}</td>
+        <td className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>{expression.falseAnswerOne}</td>
+        <td className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>{expression.falseAnswerTwo}</td>
+        <td>
+        <button
+          className="bg-[#60AC90] shadow-md transition-all font-bold duration-300 hover:scale-105 text-white py-2 hover:shadow-xl w-full rounded-lg px-1"
+          onClick={() => handleValidate(expression.id)}
+        >
+          Validate
+        </button>
+        </td>
+        <td>
+        <button
+          className="bg-red-500 shadow-md transition-all font-bold duration-300 hover:scale-105 text-white py-2 hover:shadow-xl w-full rounded-lg px-1"
+          onClick={() => handleDelete(expression.id)}
+        >
+          Delete
+        </button>
+        </td>
+      </tr>
+    /*
     <div className="flex">
       <div className="flex-1">
         <p className= {isFontSizeLarge ? 'text-4xl' : 'text-2xl'}>{expression.expression}</p>
@@ -35,8 +58,8 @@ const UnvalidatedExpression: React.FC<UnvalidatedExpressionProps> = ({
           Delete
         </button>
       </div>
-    </div>
-  );
+    </div>*/
+  ); 
 };
 
 export default UnvalidatedExpression;

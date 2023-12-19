@@ -56,11 +56,11 @@ function App() {
         />
         <Route
           path="/spanishExpressions"
-          element={<Game isFontSizeLarge={isFontSizeLarge} />}
+          element={<Game isFontSizeLarge={isFontSizeLarge} language={language}/>}
         />
         <Route
           path="/englishExpressions"
-          element={<Game isFontSizeLarge={isFontSizeLarge} />}
+          element={<Game isFontSizeLarge={isFontSizeLarge} language={language}/>}
         />
         <Route
           path="/requestExpression"
@@ -68,7 +68,7 @@ function App() {
         />
         <Route
           path="/admin"
-          element={<Admin isFontSizeLarge={isFontSizeLarge} />}
+          element={<Admin isFontSizeLarge={isFontSizeLarge} language={language}/>}
         />
       </Routes>
     </>

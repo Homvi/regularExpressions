@@ -15,7 +15,7 @@ export const content = {
             logout: "Log out",
         },
         choosePage:{
-            learn: "I want to learn..",
+            learn: "I want to learn...",
             spanish: "Spanish Expressions",
             english: "English Expressions"
         },
