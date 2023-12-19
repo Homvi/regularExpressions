@@ -31,6 +31,12 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge, language }) => 
   const falseAnswerOneRef = useRef<HTMLDivElement>(null);
   const falseAnswerTwoRef = useRef<HTMLDivElement>(null);
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>, choice: string) => {
+    if (event.key === 'Enter') {
+      handleChoice(choice);
+    }
+  };
+
   let url = "";
   if (expressionsType === "spanishExpressions") {
     url = "http://localhost:8080/getSpanishExpressions";
@@ -180,6 +186,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge, language }) => 
               style={{ order: randomNumbersRef.current[0] }}
               tabIndex={randomNumbersRef.current[0] + 5}
               onClick={() => handleChoice(activeExpression.rightAnswer)}
+              onKeyDown={(event) => handleKeyPress(event, activeExpression.rightAnswer)}
               className={`border-2 min-w-[200px] md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer transition-all duration-100 ${
                 showAnswerOne
                   ? "opacity-100 translate-x-0"
@@ -198,6 +205,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge, language }) => 
               style={{ order: randomNumbersRef.current[1] }}
               tabIndex={randomNumbersRef.current[1] + 5}
               onClick={() => handleChoice(activeExpression.falseAnswerOne)}
+              onKeyDown={(event) => handleKeyPress(event, activeExpression.rightAnswer)}
               className={`border-2 min-w-[200px] md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer transition-all duration-100 ${
                 showAnswerTwo
                   ? "opacity-100 translate-x-0"
@@ -216,6 +224,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge, language }) => 
               style={{ order: randomNumbersRef.current[2] }}
               tabIndex={randomNumbersRef.current[2] + 5}
               onClick={() => handleChoice(activeExpression.falseAnswerTwo)}
+              onKeyDown={(event) => handleKeyPress(event, activeExpression.rightAnswer)}
               className={`border-2 min-w-[200px] md:min-w-[500px] w-full flex justify-center items-center p-3 rounded-lg cursor-pointer transition-all duration-100 ${
                 showAnswerThree
                   ? "opacity-100 translate-x-0"
