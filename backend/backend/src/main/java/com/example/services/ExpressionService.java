@@ -28,13 +28,14 @@ public class ExpressionService {
 		this.adminRepository = adminRepository;
 	}
 	
-	public List<Expression> getExpressions(String language) {
+	public List<Expression> getValidatedExpressions(String language) {
 	    List<Expression> expressions = expressionRepository.findAll().stream()
-	            .filter(expression -> language.equals(expression.getLanguageOfExpression()))
+	            .filter(expression -> language.equals(expression.getLanguageOfExpression()) && expression.getValidated() == 1L)
 	            .collect(Collectors.toList());
 	    Collections.shuffle(expressions);
 	    return expressions.stream().limit(10).collect(Collectors.toList());
 	}
+
 
 	public ResponseEntity<?> validateExpression(Expression expression) {
 		Optional<Expression> optionalExpression = expressionRepository.findById(expression.getId());

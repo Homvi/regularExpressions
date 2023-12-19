@@ -28,13 +28,13 @@ public class ExpressionController {
 	//Sends 10 spanish expressions to the frontend
 	@GetMapping("/getSpanishExpressions")
 	public List<Expression> getSpanishExpressions() {
-		return expressionService.getExpressions("spanish");
+		return expressionService.getValidatedExpressions("spanish");
 	}
 
 	//Sends 10 english expressions to the frontend
 	@GetMapping("/getEnglishExpressions")
 	public List<Expression> getEnglishExpressions() {
-		return expressionService.getExpressions("english");
+		return expressionService.getValidatedExpressions("english");
 	}
 	
 	//Validates the selected expression. Turns the validated
