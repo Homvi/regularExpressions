@@ -156,7 +156,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
   };
 
   return (
-    <div className="h-screen relative flex justify-start md:m-9 items-center flex-col gap-3 font-nova">
+    <div className="h-screen relative flex justify-start md:m-9 items-center flex-col gap-3 font-nova overflow-x-hidden">
       {loading && <p>Loading...</p>}
       {loading && <span className="loading loading-infinity loading-lg"></span>}
       {!loading && !isGameFinished && (
@@ -164,7 +164,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge }) => {
           <ProgressBar progress={progress} />
           <div
             id="expressionsContainer"
-            className={`flex flex-col text-center justify-center w-full md:max-w-xl items-center gap-3 transition-all duration-300 ${
+            className={`flex flex-col text-center justify-center w-full md:max-w-xl items-center gap-3 transition-all duration-300${
               fadeIn
                 ? "opacity-0 translate-x-full"
                 : "opacity-100 translate-x-0"

@@ -51,7 +51,14 @@ export const content = {
             send: "Send",
             requestOk: "You have succesfully requested a new expression!",
             requestFail: "Oops it didn't work!"
-        }
+        },
+        score:{
+            score: "Your score:",
+            good: "Good Job!",
+            excellent: "Excellent!",
+            main:"Go to main page",
+            more:"Give me 10 more"
+            }
         },
     es: {
         homePage: {
@@ -105,7 +112,14 @@ export const content = {
             send: "Enviar",
             requestOk: "Has solicitado una nueva expresión con éxito",
             requestFail: "¡Upps, algo salió mal!",
+            },
+        score: {
+            score: "Tu puntuación:",
+            good: "¡Buen trabajo!",
+            excellent: "¡Excelente!",
+            main: "Ir a la página principal",
+            more: "Dame 10 más"
             }
-            
+ 
         }
     }

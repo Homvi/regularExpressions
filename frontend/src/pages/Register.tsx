@@ -168,7 +168,7 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge,language}) => {
             />
           </label>  
         </div>
-        <button type="submit" className={`btn btn-primary ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>
+        <button type="submit" className={`bg-[#052138] shadow-md text-white py-2 transition-all duration-300 hover:scale-105 hover:shadow-xl rounded-lg px-1 ${isFontSizeLarge ? 'text-xl' : 'text-md'}`}>
         {content[language].register.register}
         </button>
       </form>

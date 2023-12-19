@@ -87,7 +87,7 @@ const Login: React.FC<LoginProps> = ({isFontSizeLarge, language}) => {
             className="input input-bordered w-full"
           />
         </label>
-        <button type="submit" className="btn btn-primary my-3">
+        <button type="submit" className="mt-3 bg-[#052138] shadow-md text-white py-2 transition-all duration-300 hover:scale-105 hover:shadow-xl rounded-lg px-1">
         {content[language].login.login}
         </button>
       </form>
