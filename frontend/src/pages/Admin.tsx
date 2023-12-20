@@ -163,7 +163,7 @@ const Admin: React.FC<AdminProps> = ({isFontSizeLarge, language }) => {
   return (
     <div>
       {!requestedExpressions && <p>Loading...</p>}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mt-20">
       <table className="table my-10">
     <thead>
       <tr>

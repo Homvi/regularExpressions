@@ -23,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({ changeFontSize, isFontSizeLarge, change
   };
 
   return (
-    <div className="navbar bg-base-100 font-nova border-b-[1px] py-4 border-[#05213819]">
+    <div className="navbar bg-base-100 font-nova border-b-[1px] py-4 border-[#05213819] fixed top-0">
       <div className="flex-1">
         <Link
           to="/"

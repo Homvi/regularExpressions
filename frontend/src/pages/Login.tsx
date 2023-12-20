@@ -52,7 +52,7 @@ const Login: React.FC<LoginProps> = ({isFontSizeLarge, language}) => {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center font-nova">
+    <div className="h-full w-full flex flex-col items-center font-nova mt-28">
       <ToastContainer />
       <h1 className={`text-center my-3 ${isFontSizeLarge ? 'text-4xl' : 'text-3xl'}`}>{content[language].login.login}</h1>
       {/* form */}

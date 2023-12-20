@@ -37,6 +37,8 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge, language }) => 
     }
   };
 
+  const [isClickable, setIsClickable] = useState(true);
+
   let url = "";
   if (expressionsType === "spanishExpressions") {
     url = "http://localhost:8080/getSpanishExpressions";
@@ -131,6 +133,10 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge, language }) => 
   }, [activeExpressionIndex]);
 
   const handleChoice = (choice: string) => {
+    if (!isClickable) {
+      return; // Evitar clics adicionales mientras espera
+    }
+    setIsClickable(false);
     if (choice === activeExpression.rightAnswer) {
       setIsRightAnswerChosen(true);
       setScore(score + 1);
@@ -138,7 +144,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge, language }) => 
     if (activeExpressionIndex === 9) {
       setTimeout(() => {
         setIsGameFinished(true);
-      }, 3000);
+      }, 2000);
     }
     if (choice === activeExpression.falseAnswerOne) {
       setIsWrongAnswerOneChosen(true);
@@ -153,7 +159,9 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge, language }) => 
       setIsWrongAnswerOneChosen(false);
       setIsWrongAnswerTwoChosen(false);
       handleActiveEexpressionIncrement();
-    }, 3000);
+      setIsClickable(true);
+    }, 2000);
+    
   };
 
   const progress = (activeExpressionIndex / expressions.length) * 100;
@@ -164,7 +172,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge, language }) => 
   };
 
   return (
-    <div className="h-screen relative flex justify-start md:m-9 items-center flex-col gap-3 font-nova overflow-x-hidden">
+    <div className="h-full relative flex justify-start items-center flex-col gap-3 font-nova overflow-x-hidden mt-32">
       {loading && <p>Loading...</p>}
       {loading && <span className="loading loading-infinity loading-lg"></span>}
       {!loading && !isGameFinished && (

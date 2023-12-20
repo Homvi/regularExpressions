@@ -46,7 +46,7 @@ const Score: React.FC<ScoreProps> = ({ score, resetGame, language }) => {
   }, [score]);
 
   return (
-    <div className="absolute left-0 right-0 bottom-0 top-0 flex justify-start flex-col items-center gap-6">
+    <div className="flex justify-start flex-col items-center gap-6">
       <div className="max-w-sm">{View}</div>
       <h2 className="text-[#052138a4] text-2xl">
         {content[language].score.score}{" "}

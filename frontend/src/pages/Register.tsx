@@ -51,7 +51,7 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge,language}) => {
       );
       console.log(response);
       toast(content[language].register.registerOk);
-      navigate("/");
+      navigate("/login");
       setFirstName("");
       setLastName("");
       setUserName("");
@@ -65,7 +65,7 @@ const Register: React.FC<RegisterProps> = ({isFontSizeLarge,language}) => {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center font-nova">
+    <div className="h-full w-full flex flex-col items-center font-nova mt-28">
       <ToastContainer />
       <h1 className={`text-center my-3 ${isFontSizeLarge ? 'text-4xl' : 'text-3xl'}`}>{content[language].register.register}</h1>
       {/* form */}
