@@ -27,7 +27,7 @@ const Home: React.FC<HomeProps> = ({ isFontSizeLarge, language }) => {
             : " px-2 text-2xl min-h-screen flex flex-col md:flex-row items-center font-nova"
         }
       >
-        <div className={ isFontSizeLarge ? "flex my-11 justify-center h-full" : "flex my-11 md:w-[40%] justify-center h-full"}>
+        <div className={ isFontSizeLarge ? "flex my-32 justify-center h-full" : "flex my-11 md:w-[40%] justify-center h-full"}>
           {View}
         </div>
         <div className="flex flex-col items-center">

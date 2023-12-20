@@ -117,7 +117,7 @@ export const content = {
             score: "Tu puntuación:",
             good: "¡Buen trabajo!",
             excellent: "¡Excelente!",
-            main: "Ir a la página principal",
+            main: "Página principal",
             more: "Dame 10 más"
             }
  
