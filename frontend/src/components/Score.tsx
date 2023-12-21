@@ -14,8 +14,8 @@ interface ScoreProps {
 const Score: React.FC<ScoreProps> = ({ score, resetGame, language }) => {
   const [animatedScore, setAnimatedScore] = useState(0);
 
-  const animation = score > 9 ? fireworks : check;
-  const hasToLoop = score > 9 ? true : false;
+  const animation = score > 4 ? fireworks : check;
+  const hasToLoop = score > 4 ? true : false;
 
   const options = {
     animationData: animation,
@@ -50,12 +50,12 @@ const Score: React.FC<ScoreProps> = ({ score, resetGame, language }) => {
       <div className="max-w-sm">{View}</div>
       <h2 className="text-[#052138a4] text-2xl">
         {content[language].score.score}{" "}
-        <span className={ score > 9 ? "text-[#a39301] animate-pulse duration-75 transition-all": "text-[#FF9600]"}>
-          {Math.round((animatedScore / 10) * 100)}%
+        <span className={ score > 4 ? "text-[#a39301] animate-pulse duration-75 transition-all": "text-[#FF9600]"}>
+          {Math.round((animatedScore / 5) * 100)}%
         </span>
       </h2>
-      {score <= 9 && <h3 className="text-[#052138a4] text-xl tracking-widest">{content[language].score.good}</h3>}
-      {score > 9 && <h3 className="text-[#a39301] text-xl tracking-widest">{content[language].score.excellent}!</h3>}
+      {score <= 4 && <h3 className="text-[#052138a4] text-xl tracking-widest">{content[language].score.good}</h3>}
+      {score > 4 && <h3 className="text-[#a39301] text-xl tracking-widest">{content[language].score.excellent}!</h3>}
       <div className="flex gap-6 justify-center w-full text-center">
         <Link
           className="bg-[#052138] whitespace-nowrap shadow-md text-white py-2 transition-all duration-300 hover:scale-105 hover:shadow-xl w-[40%] rounded-lg px-1 max-w-[200px]"

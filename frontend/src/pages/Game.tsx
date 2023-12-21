@@ -141,7 +141,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge, language }) => 
       setIsRightAnswerChosen(true);
       setScore(score + 1);
     }
-    if (activeExpressionIndex === 9) {
+    if (activeExpressionIndex === 4) {
       setTimeout(() => {
         setIsGameFinished(true);
       }, 2000);
@@ -164,7 +164,7 @@ const Game: React.FC<GameExpressionsProps> = ({ isFontSizeLarge, language }) => 
     
   };
 
-  const progress = (activeExpressionIndex / expressions.length) * 100;
+  const progress = (activeExpressionIndex / expressions.length) * 200;
 
   const handleActiveEexpressionIncrement = () => {
     setActiveExpressionIndex((curr) => curr + 1);

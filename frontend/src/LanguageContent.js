@@ -57,7 +57,7 @@ export const content = {
             good: "Good Job!",
             excellent: "Excellent!",
             main:"Go to main page",
-            more:"Give me 10 more"
+            more:"Give me 5 more"
             }
         },
     es: {
@@ -118,7 +118,7 @@ export const content = {
             good: "¡Buen trabajo!",
             excellent: "¡Excelente!",
             main: "Página principal",
-            more: "Dame 10 más"
+            more: "Dame 5 más"
             }
  
         }
