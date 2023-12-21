@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useLottie } from "lottie-react";
 import mundo from "../assets/animations/mundo.json";
 import {content} from "../LanguageContent.js";
+import { UserContext } from "../UserContext";
+import {useContext} from "react";
 
 interface HomeProps {
   isFontSizeLarge: boolean;
@@ -16,6 +18,7 @@ const Home: React.FC<HomeProps> = ({ isFontSizeLarge, language }) => {
     loop: true,
   };
   const { View } = useLottie(options);
+  const [loggedInUser] = useContext(UserContext);
 
   return (
     <>
@@ -41,12 +44,14 @@ const Home: React.FC<HomeProps> = ({ isFontSizeLarge, language }) => {
             >
               {content[language].homePage.getStartedButton}
             </Link>
+            {!loggedInUser.firstName && (
             <Link
               to="/login"
               className="bg-[#052138] shadow-md text-white py-2 transition-all duration-300 hover:scale-105 hover:shadow-xl rounded-lg px-1"
             >
               {content[language].homePage.login}
             </Link>
+            )}
           </div>
         </div>
       </div>
