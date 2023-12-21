@@ -170,7 +170,7 @@ const Admin: React.FC<AdminProps> = ({isFontSizeLarge, language }) => {
         <th className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>{content[language].request.expression}</th>
         <th className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>{content[language].request.right}</th>
         <th className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>{content[language].request.false1}</th>
-        <th className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>{content[language].request.false1}</th>
+        <th className= {isFontSizeLarge ? 'text-xl' : 'text-sm'}>{content[language].request.false2}</th>
       </tr>
     </thead>
     <tbody>
